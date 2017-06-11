@@ -4,11 +4,10 @@ def rev(num):
 		return num
 	elif num % 10 == 0:
 		return 0
+	elif num < -10 and num %10 != 0:
+		str_num = str(num)[1:]
+		sign = str(num)[0]
+		return int(sign + str_num[-1] + str(rev(int(str_num[:-1]))))
 	else:
 		str_num = str(num)
 		return int(str_num[-1] + str(rev(int(str_num[:-1]))))
-
-print(rev(10))
-print(rev(7))
-print(rev(123))
-print(rev(456))
