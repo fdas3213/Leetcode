@@ -1,3 +1,4 @@
+#use of stack data structure could be better
 def isValid(s):
 	symbols = "()[]{}"
 	i = 0
