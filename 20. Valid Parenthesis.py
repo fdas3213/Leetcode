@@ -10,3 +10,20 @@ def isValid(s):
 		i += 2
 
 	return not stop
+
+def isValid(s):
+	symbols = {")":"(","]":"[","}":"{"}
+	stack = []
+
+	for char in s:
+		if char in symbols.values():
+			stack.append(char)
+
+		elif char in symbols.keys():
+			if stack == [] or symbols[char] != stack.pop():
+				return False
+
+		else:
+			return False
+
+	return stack == []
