@@ -9,8 +9,8 @@ def twoSum(num, target):
 		index2 = index + 1
 
 		while index2 < len(num) and not found:
-			result = num[index] + num[index2]
-			if result == target:
+			
+			if (num[index] + num[index2]) == target:
 				found = False
 				lst = [index,index2]
 			index2 += 1
