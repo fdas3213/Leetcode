@@ -1,5 +1,8 @@
 #Temporarily a O(n^2) solution
 def twoSum(num, target):
+	if len(num) < 2:
+		return False
+	
 	index = 0
 	found = False
 	while index < len(num) and not found:
