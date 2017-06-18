@@ -7,8 +7,12 @@ def longestCommonPrefix(strs):
 		#while not val.startswith(prefix):
 		#	prefix = prefix[:-1]
 		while val != prefix:
-			val = val[:len(prefix) -1]
-			prefix = prefix[:-1]
+			if len(val) > len(prefix):
+				val = val[:len(prefix) -1]
+				prefix = prefix[:-1]
+			else:
+				prefix = prefix[:len(val)-1]
+				val = val[:-1]
 
 	return prefix
 	
