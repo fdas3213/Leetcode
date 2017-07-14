@@ -1,18 +1,17 @@
-#Temporarily a O(n^2) solution
-def twoSum(num, target):
-	if len(num) < 2:
+def twosum(alist, target):
+	if len(alist) < 2:
 		return False
 	
+	store_dict = dict()
+	stop = False
 	index = 0
-	found = False
-	while index < len(num) and not found:
-		index2 = index + 1
+	while not stop and index < len(alist):
+		if alist[index] in store_dict:
+			stop = True
+			result = [store_dict[alist[index]], index]
+		else:
+			store_dict[target - alist[index]] = store_dict.get(target - alist[index], index)
+			index += 1
 
-		while index2 < len(num) and not found:
-			
-			if (num[index] + num[index2]) == target:
-				found = False
-				lst = [index,index2]
-			index2 += 1
-		index += 1
-	return lst
+	return result
+
