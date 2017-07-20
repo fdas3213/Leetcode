@@ -1,10 +1,13 @@
-#This is O(n). 
+
 def longestCommonPrefix(strs):
-	prefix = strs[0]
-
-	for val in strs:
-		while not val.startswith(prefix):
-			prefix = prefix[:-1]
-
+	lst = list(zip(*strs))
+	prefix = ""
+	for val in lst:
+		if len(set(val)) == 1:
+			prefix += val[0]
+		else:
+			break
 	return prefix
+
+print(longestCommonPrefix(["java","jab","jacob"]))
 	
