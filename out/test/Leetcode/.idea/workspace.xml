@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42ac18e7-e2a9-4c2a-bd16-94741fafde8b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ListNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/add2nums.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merge2list.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valid_parenthesis.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SubstringLength.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/ListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add2nums.java" beforeDir="false" afterPath="$PROJECT_DIR$/add2nums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Leetcode/ListNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Leetcode/ListNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Leetcode/add2nums.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Leetcode/add2nums.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +21,8 @@
       <file leaf-file-name="merge2list.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/merge2list.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+            <state relative-caret-position="306">
+              <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -31,12 +30,8 @@
       <file leaf-file-name="ListNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ListNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-              <folding>
-                <element signature="e#76#77#0" expanded="true" />
-                <element signature="e#104#105#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -44,17 +39,17 @@
       <file leaf-file-name="add2nums.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/add2nums.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="238">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test.java">
+      <file leaf-file-name="SubstringLength.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SubstringLength.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+            <state relative-caret-position="391">
+              <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -76,27 +71,27 @@
       <list>
         <option value="$PROJECT_DIR$/Valid_parenthesis.java" />
         <option value="$PROJECT_DIR$/valid_parenthesis.java" />
-        <option value="$PROJECT_DIR$/ListNode.java" />
         <option value="$PROJECT_DIR$/merge2list.java" />
-        <option value="$PROJECT_DIR$/add2nums.java" />
         <option value="$PROJECT_DIR$/test.java" />
+        <option value="$PROJECT_DIR$/ListNode.java" />
+        <option value="$PROJECT_DIR$/add2nums.java" />
+        <option value="$PROJECT_DIR$/SubstringLength.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="127" />
-    <option name="y" value="51" />
-    <option name="width" value="1688" />
-    <option name="height" value="944" />
+    <option name="x" value="-1755" />
+    <option name="y" value="-287" />
+    <option name="width" value="1519" />
+    <option name="height" value="879" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -108,10 +103,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CS61B-sp2014/hw5" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -128,8 +124,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.test">
+  <component name="RunManager" selected="Application.SubstringLength">
+    <configuration name="SubstringLength" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SubstringLength" />
+      <module name="Leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="add2nums" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="add2nums" />
+      <module name="Leetcode" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
     <configuration name="merge2list" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -189,9 +195,13 @@
       <item itemvalue="Application.valid_parenthesis" />
       <item itemvalue="Application.merge2list" />
       <item itemvalue="Application.test" />
+      <item itemvalue="Application.add2nums" />
+      <item itemvalue="Application.SubstringLength" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SubstringLength" />
+        <item itemvalue="Application.add2nums" />
         <item itemvalue="Application.test" />
         <item itemvalue="Application.merge2list" />
         <item itemvalue="Application.valid_parenthesis" />
@@ -212,7 +222,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="85" y="34" width="1125" height="629" extended-state="0" />
+    <frame x="-1755" y="-287" width="1519" height="879" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -222,12 +232,12 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32746956" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.22077923" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20162016" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14903526" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -237,16 +247,37 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32950193" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/merge2list.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ListNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/add2nums.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/valid_parenthesis.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -289,35 +320,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.java" />
     <entry file="file://$PROJECT_DIR$/merge2list.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        <state relative-caret-position="306">
+          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ListNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding>
-            <element signature="e#76#77#0" expanded="true" />
-            <element signature="e#104#105#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/add2nums.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="238">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.java">
+    <entry file="file://$PROJECT_DIR$/SubstringLength.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        <state relative-caret-position="391">
+          <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
         </state>
       </provider>
     </entry>
