@@ -11,20 +11,13 @@ public class RemoveElement27 {
 
 
     public static int[] removeElement(int[] nums, int val) {
-        if (nums.length == 0) return nums;
+        if (nums == null || nums.length == 0) return nums;
         int len = 0;
-        int i = 0, j = 0;
-        while (i < nums.length){
-            if (nums[i] == val){
-                j = i;
-                while((nums[j] == nums[i]) && (j < nums.length)){
-                    j ++;
-                }
-                System.out.println("j: " + j + " i: " + i);
-                nums[i] = nums[j];
+        for (int i = 0; i <nums.length; i++){
+            if (nums[i] != val){
+                nums[len] = nums[i];
                 len ++;
             }
-            i ++;
         }
         return nums;
     }

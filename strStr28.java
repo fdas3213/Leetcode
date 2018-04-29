@@ -4,7 +4,11 @@ public class strStr28 {
         System.out.println(strStr("hello","ll"));
         System.out.println(strStr("aaaaa","bba"));
         System.out.println(strStr("mississippi", "issip"));
+
+
     }
+
+
     public static int strStr(String haystack, String needle){
         int l1 = haystack.length(), l2 = needle.length();
         if (l1 < l2){
