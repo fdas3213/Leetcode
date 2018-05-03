@@ -4,6 +4,9 @@ public class merge2list {
         ListNode l2 = new ListNode(8);
         ListNode result = mergeTwoLists(l1, l2);
         System.out.println(result.val);
+
+        String s = "xiao";
+        System.out.println(1 - s.charAt(2));
     }
 
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2){
