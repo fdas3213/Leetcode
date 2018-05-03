@@ -6,6 +6,11 @@ public class lastword58 {
         System.out.println(lengthOfLastWord(s1));
         System.out.println(lengthOfLastWord(s));
         System.out.println(lengthOfLastWord(s2));
+
+        System.out.println("Using trim: ");
+        System.out.println(solution(s1));
+        System.out.println(solution(s));
+        System.out.println(solution(s2));
     }
 
     public static int lengthOfLastWord(String s) {
@@ -18,5 +23,9 @@ public class lastword58 {
             else if(s.charAt(i) != ' ') out += s.charAt(i);
         }
         return out.length();
+    }
+
+    public static int solution(String s){
+        return s.trim().length() - s.trim().lastIndexOf(" ")-1;
     }
 }
