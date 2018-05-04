@@ -4,29 +4,37 @@ public class addbinary67 {
     public static void main(String[] args){
         System.out.println(addBinary("10","11"));
         System.out.println(addBinary("110","10"));
+        System.out.println(addBinary("1010","1011"));
+
     }
 
-    public static String addBinary(String a, String b) {
-        if (a.length() == 0) return b;
-        if (b.length() == 0) return a;
-        int i = a.length() - 1;
-        int j = b.length() - 1;
-        String out = "";
-        int reminder = 0;
-
-        while (i >= 0 || j >= 0){
-            int sum = Character.getNumericValue(a.charAt(i)) + Character.getNumericValue(b.charAt(j));
-            if (sum + reminder == 2){
-                out += "0";
-                reminder = 1;
-            }else if (sum + reminder > 2){
-                out += "1";
-                reminder = 1;
-            }else out += sum;
-            i --;
-            j --;
+    public static String addBinarySolution(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        int i = a.length() - 1, j = b.length() -1, carry = 0;
+        while (i >= 0 || j >= 0) {
+            int sum = carry;
+            if (j >= 0) sum += b.charAt(j--) - '0';
+            if (i >= 0) sum += a.charAt(i--) - '0';
+            sb.append(sum % 2);
+            carry = sum / 2;
         }
+        if (carry != 0) sb.append(carry);
+        return sb.reverse().toString();
+    }
 
-        return out;
+
+    public static String addBinary(String a, String b) {
+        StringBuilder out = new StringBuilder();
+        int i = a.length() - 1, j = b.length() - 1, reminder = 0;
+        int sum = 0;
+        while (i >= 0 || j >= 0){
+            if (i < 0) sum = Character.getNumericValue(b.charAt(j--));
+            else if (j < 0) sum = Character.getNumericValue(a.charAt(i--));
+            else sum = Character.getNumericValue(a.charAt(i--)) + Character.getNumericValue(b.charAt(j--));
+            out.append((sum + reminder) % 2);
+            reminder = (sum + reminder) / 2;
+        }
+        if (reminder != 0) out.append(reminder);
+        return out.reverse().toString();
     }
 }
