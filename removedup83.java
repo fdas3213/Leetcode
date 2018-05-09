@@ -20,6 +20,7 @@ public class removedup83 {
         ListNode result = new ListNode(0);
         result.next = head;
 
+
         while (head.next != null){
             while (head.val == head.next.val){
                 if (head.next.next != null) head.next = head.next.next;
