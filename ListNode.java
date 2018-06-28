@@ -11,4 +11,15 @@ public class ListNode {
         this.val = x;
         this.next = n;
     }
+
+    public static String toString(ListNode h){
+        String s = "[ ";
+        while (h != null){
+            s += h.val;
+            s += " ";
+            h = h.next;
+        }
+        s += "]";
+        return s;
+    }
 }
