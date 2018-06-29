@@ -1,17 +1,16 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class InorderTraversal94 {
     public static List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> l = new ArrayList<>();
-        if (root.left != null) {
-            inorderTraversal(root.left);
-        }
+        return inorder(root,l);
+    }
+
+    private static List<Integer> inorder(TreeNode root, List<Integer> l){
+        if (root.left != null) inorder(root.left, l);
         l.add(root.val);
-        if (root.right != null) {
-            inorderTraversal(root.right);
-        }
+        if (root.right != null) inorder(root.right, l);
         return l;
     }
 
