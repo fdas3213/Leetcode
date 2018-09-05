@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class ListNode {
     int val;
     ListNode next;
@@ -13,13 +11,13 @@ public class ListNode {
     }
 
     public static String toString(ListNode h){
-        String s = "[ ";
-        while (h != null){
+        String s = " ";
+        while (h.next != null){
             s += h.val;
-            s += " ";
+            s += "->";
             h = h.next;
         }
-        s += "]";
+        s += h.val;
         return s;
     }
 }
