@@ -12,11 +12,25 @@ public class LC14 {
         }
         return s;
     }
+
+    public static String longestCommonPrefixEasy(String[] strs){
+        if (strs == null || strs.length == 0) return "";
+        String s = strs[0];
+        int i = 1;
+        while (i < strs.length){
+            while(strs[i].indexOf(s) != 0){
+                s = s.substring(0, s.length()-1);
+            }
+            i++;
+        }
+        return s;
+    }
     public static void main(String[] args){
         String[] t1 = {"flower", "flow","flight"};
         String[] t2 = {"dog", "racecar", "car"};
 
         System.out.println(longestCommonPrefix(t1));
         System.out.println(longestCommonPrefix(t2));
+        System.out.println(longestCommonPrefixEasy(t1));
     }
 }
