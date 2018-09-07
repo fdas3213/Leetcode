@@ -6,7 +6,7 @@ public class LC66 {
         int reminder = 1;
         for (int k = digits.length-1; k >= 0; k--){
             int sum = digits[k] + reminder;
-            if (reminder != 0) reminder = 0;
+            reminder = 0;
             if (sum == 10) {
                 out[k] = 0;
                 reminder++;
