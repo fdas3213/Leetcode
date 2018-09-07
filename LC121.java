@@ -4,7 +4,7 @@ public class LC121 {
         if (prices.length == 0) return 0;
         int min_prices = prices[0];
         int max_profit = 0;
-        for (int i = 1; i<prices.length;i++){
+        for (int i = 1; i< prices.length;i++){
             if (prices[i] < min_prices) min_prices = prices[i];
             if (max_profit <(prices[i] - min_prices)) max_profit = prices[i]-min_prices;
         }
