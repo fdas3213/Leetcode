@@ -20,11 +20,28 @@ Explanation: There are three ways to climb to the top.
 1. 1 step + 1 step + 1 step
 2. 1 step + 2 steps
 3. 2 steps + 1 step
+ */
 
 public class LC70 {
-    public static int climbStairs(int n) {}
-    public static void main(String[] args){
+    public static int climbStairs(int n) {
+        if (n <= 0) return 0;
+        if (n == 1 || n == 2) return n;
+
+        int sum = 0;
+        int one_step = 2;
+        int two_step = 1;
+
+        for (int i = 2; i < n; i ++){
+            sum = one_step + two_step;
+            two_step = one_step;
+            one_step = sum;
+        }
+        return sum;
 
     }
+
+    public static void main(String[] args){
+        System.out.println(climbStairs(3));
+        System.out.println(climbStairs(2));
+    }
 }
- */
