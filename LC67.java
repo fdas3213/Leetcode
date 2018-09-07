@@ -1,37 +1,24 @@
-/*
-Given two binary strings, return their sum (also a binary string).
 
-The input strings are both non-empty and contains only characters 1 or 0.
-
-Example 1:
-
-Input: a = "11", b = "1"
-Output: "100"
-Example 2:
-
-Input: a = "1010", b = "1011"
-Output: "10101"
- */
 public class LC67 {
     public static String addBinary(String a, String b) {
         int l1 = a.length() - 1, l2 = b.length() -1;
         StringBuilder out = new StringBuilder();
-        int over = 0;
-        while (l1 >= 0 && l2 >= 0){
-            int sum = Character.getNumericValue(a.charAt(l1--)) + Character.getNumericValue(b.charAt(l2--));
-            if(sum == 2) {
-                out.append(0);
-                over = 1;
-            }
-            else out.append(sum);
+        int over = 0, sum;
+        while (l1 >= 0 || l2 >= 0){
+            if(l1 >= 0 && l2 >= 0) sum = Character.getNumericValue(a.charAt(l1--)) + Character.getNumericValue(b.charAt(l2--)) + over;
+            else if(l2 < 0) sum = Character.getNumericValue(a.charAt(l1--)) + over;
+            else sum = Character.getNumericValue(b.charAt(l2--)) + over;
+            out.append(sum %2);
+            over = sum /2;
         }
-        return out.toString();
+        if (over != 0) out.append(over);
+        return out.reverse().toString();
     }
 
     public static void main(String[] args){
-        StringBuilder s = new StringBuilder();
-        s.append(1);
-        System.out.println(s.toString());
+        System.out.println(addBinary("1010","1011"));
+        System.out.println(addBinary("1","111"));
+        System.out.println(addBinary("1111","1111"));
     }
 
 }
