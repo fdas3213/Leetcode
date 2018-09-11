@@ -14,11 +14,28 @@ public class LC168 {
         }
     }
 
+    public static String sol(int n){
+        StringBuilder s = new StringBuilder();
+        while (n > 0){
+            n--;
+            int mod = n%26;
+            s.append((char)((int)'A'+mod));
+            n /= 26;
+        }
+        return s.reverse().toString();
+    }
+
     public static void main(String[] args){
         System.out.println(convertToTitle(1));
         System.out.println(convertToTitle(28));
         System.out.println(convertToTitle(702));
         System.out.println(convertToTitle(52));
         System.out.println(convertToTitle(704));
+
+        System.out.println(sol(1));
+        System.out.println(sol(28));
+        System.out.println(sol(702));
+        System.out.println(sol(52));
+        System.out.println(sol(704));
     }
 }
