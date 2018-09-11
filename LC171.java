@@ -1,7 +1,6 @@
 public class LC171 {
 
     public static int titleToNumber(String s) {
-        if (s.length() == 0) return s.charAt(0)-'A'+1;
         int num = 0, l = s.length() -1;
         for(int i = 0; i< s.length();i++){
             int cur = (int)Math.pow(26,l) * (s.charAt(i)-'A'+1);
@@ -21,6 +20,7 @@ public class LC171 {
 
 
     public static void main(String[] args){
+        System.out.println(titleToNumber("A"));
         System.out.println(titleToNumber("AB"));
         System.out.println(titleToNumber("ZY"));
     }
