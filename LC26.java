@@ -1,14 +1,11 @@
 public class LC26 {
     public static int removeDuplicates(int[] nums){
-        int start = 0, i = 0;
-        while (i < nums.length) {
-            nums[start] = nums[i];
-            do {
-                i++;
-            } while (i < nums.length && nums[i] == nums[start]);
-            start++;
+        if (nums.length <= 1) return nums.length;
+        int l = 1;
+        for (int i = 1; i < nums.length; i++){
+            if (nums[i-1] != nums[i]) nums[l++] = nums[i];
         }
-        return start;
+        return l;
     }
 
     public static void main(String[] args){
