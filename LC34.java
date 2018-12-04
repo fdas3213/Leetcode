@@ -23,7 +23,7 @@ public class LC34 {
         }
         return out;
     }
-    
+
 
     public static void main(String[] args){
         int[] t = {5,7,7,8,8,10};
