@@ -33,15 +33,6 @@ public class LC59 {
             colStart++;
         }
         return out;
-        /*
-        Input: 3
-Output:
-[
- [ 1, 2, 3 ],
- [ 8, 9, 4 ],
- [ 7, 6, 5 ]
-]
-         */
     }
     public static void main(String[] args){
         int[][] output = generateMatrix(3);
