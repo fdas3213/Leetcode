@@ -8,19 +8,16 @@ public class LC61 {
             head = head.next;
         }
         if(k == length || k%length == 0) return copy;
-        int pos = k < length ? k : k%length;
         ListNode dup = new ListNode(0);
         ListNode first = dup;
-        while(start != length - pos){
+        while(start != length - k%length){
             first.next = new ListNode(copy.val);
             first = first.next;
             copy = copy.next;
             start++;
         }
         ListNode output = copy;
-        while(output.next != null){
-            output = output.next;
-        }
+        while(output.next != null) output = output.next;
         output.next = dup.next;
         return copy;
     }
