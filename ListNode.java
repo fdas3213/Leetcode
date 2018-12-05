@@ -20,4 +20,5 @@ public class ListNode {
         s += h.val;
         return s;
     }
+
 }
