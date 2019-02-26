@@ -7,12 +7,29 @@ Example:
 
 Input: "23"
 Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
- */
+
+*/
+
+import java.util.LinkedList;
 import java.util.List;
-import java.util.ArrayList;
 
 public class LC17 {
-    public List<String> letterCombinations(String digits) {
+    public static List<String> letterCombinations(String digits) {
+        LinkedList<String> out = new LinkedList<>();
+        if (digits.isEmpty()) return out;
+        String[] mapping = new String[]{"0","1","abc","def","ghi","jkl","mno", "pqrs","tuv","wxyz"};
+        out.add("");
+        for (int i = 0; i < digits.length(); i++){
+            int x = Character.getNumericValue(digits.charAt(i));
+            while(out.peek().length() == i){
+                String t = out.remove();
+                for(char s: mapping[x].toCharArray()) out.add(t+s);
+            }
+        }
+        return out;
+    }
 
+    public static void main(String[] args){
+        System.out.println(letterCombinations("23"));
     }
 }
