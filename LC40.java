@@ -15,9 +15,10 @@ public class LC40 {
         else if (remain == 0) list.add(new ArrayList<>(tempList));
         else{
             for (int i = start; i < nums.length; i++){
-                //add one condition to avoid duplicates
+                //add one condition to avoid duplicate
                 if (i > start && nums[i] == nums[i-1]) continue;
                 tempList.add(nums[i]);
+                //System.out.println("i: " + i + " " + tempList);
                 backtrack(list, tempList, nums, remain-nums[i], i+1);
                 tempList.remove(tempList.size() - 1);
             }
@@ -27,7 +28,7 @@ public class LC40 {
     public static void main(String[] args){
         int[] t1 = {10,1,2,7,6,1,5};
         int[] t2 = {2,5,2,1,2};
-        System.out.println(combinationSum2(t1,8));
+        //System.out.println(combinationSum2(t1,8));
         System.out.println(combinationSum2(t2,5));
     }
 }
