@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class LC53 {
-    public static int maxSubArrat(int[] nums){
+    public static int maxSubArray(int[] nums){
         int[] reward = new int[nums.length];
         int max = nums[0];
         reward[0] = nums[0];
@@ -14,6 +14,6 @@ public class LC53 {
     }
     public static void main(String[] args){
         int[] l1 = {-2,1,-3,4,-1,2,1-5,4};
-        System.out.println(maxSubArrat(l1));
+        System.out.println(maxSubArray(l1));
     }
 }
