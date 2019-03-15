@@ -10,7 +10,7 @@ public class ListNode {
         this.next = n;
     }
 
-    public static String toString(ListNode h){
+    public static void toString(ListNode h){
         String s = " ";
         while (h.next != null){
             s += h.val;
@@ -18,7 +18,7 @@ public class ListNode {
             h = h.next;
         }
         s += h.val;
-        return s;
+        System.out.println(s);
     }
 
 }

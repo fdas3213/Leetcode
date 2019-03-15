@@ -12,10 +12,10 @@ public class LC83 {
     }
     public static void main(String[] args){
         ListNode t1 = new ListNode(1,new ListNode(2,new ListNode(2,new ListNode(3,new ListNode(3)))));
-        System.out.println(ListNode.toString(deleteDuplicates(t1)));
+        ListNode.toString(deleteDuplicates(t1));
         ListNode t2 = new ListNode(1,new ListNode(1));
-        System.out.println(ListNode.toString(deleteDuplicates(t2)));
+        ListNode.toString(deleteDuplicates(t2));
         ListNode t3 = new ListNode(1,new ListNode(1, new ListNode(1)));
-        System.out.println(ListNode.toString(deleteDuplicates(t3)));
+        ListNode.toString(deleteDuplicates(t3));
     }
 }

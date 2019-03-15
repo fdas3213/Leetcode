@@ -27,14 +27,14 @@ public class RemoveNth19 {
 
     public static void main(String[] args){
         ListNode l = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-        System.out.println(ListNode.toString(l));
+        ListNode.toString(l);
 
-        System.out.println(ListNode.toString(removeNthFromEnd(l,2)));
+        ListNode.toString(removeNthFromEnd(l,2));
 
         ListNode l1 = new ListNode(1, new ListNode(2));
-        System.out.println(ListNode.toString(removeNthFromEnd(l1,1)));
+        ListNode.toString(removeNthFromEnd(l1,1));
 
         ListNode l2 = new ListNode(1);
-        System.out.println(ListNode.toString(removeNthFromEnd(l2,1)));
+        ListNode.toString(removeNthFromEnd(l2,1));
     }
 }

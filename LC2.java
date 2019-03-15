@@ -26,6 +26,6 @@ public class LC2 {
     public static void main(String[] args){
         ListNode n1 = new ListNode(2, new ListNode(4, new ListNode(3)));
         ListNode n2 = new ListNode(5, new ListNode(6, new ListNode(4)));
-        System.out.println(ListNode.toString(addTwoNumbers(n1, n2)));
+        ListNode.toString(addTwoNumbers(n1, n2));
     }
 }

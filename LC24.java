@@ -30,6 +30,6 @@ public class LC24 {
 
     public static void main(String[] args){
         ListNode l1 = new ListNode(1,new ListNode(2,new ListNode(3, new ListNode(4))));
-        System.out.println(ListNode.toString(swapPairs(l1)));
+        ListNode.toString(swapPairs(l1));
     }
 }

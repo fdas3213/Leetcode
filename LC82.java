@@ -22,7 +22,7 @@ public class LC82 {
                 new ListNode(3)))));
         ListNode t2 = new ListNode(1,new ListNode(2, new ListNode(3,
                 new ListNode(3, new ListNode(4,new ListNode(4, new ListNode(5)))))));
-        System.out.println(ListNode.toString(deleteDuplicates(t1)));
-        System.out.println(ListNode.toString(deleteDuplicates(t2)));
+        ListNode.toString(deleteDuplicates(t1));
+        ListNode.toString(deleteDuplicates(t2));
     }
 }

@@ -29,7 +29,7 @@ public class LC203 {
     public static void main(String[] args){
         ListNode n1 = new ListNode(1,new ListNode(2,new ListNode(6,new ListNode(3, new ListNode(4,
                 new ListNode(5, new ListNode(6)))))));
-        System.out.println(ListNode.toString(removeElements(n1, 6)));
-        System.out.println(ListNode.toString(solution2(n1,6)));
+        ListNode.toString(removeElements(n1, 6));
+        ListNode.toString(solution2(n1,6));
     }
 }
