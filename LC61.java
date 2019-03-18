@@ -24,11 +24,11 @@ public class LC61 {
 
     public static void main(String[] args){
         ListNode t = new ListNode(0, new ListNode(1, new ListNode(2)));
-        System.out.println(ListNode.toString(rotateRight(t, 4)));
+        ListNode.toString(rotateRight(t, 4));
         ListNode t1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-        System.out.println(ListNode.toString(rotateRight(t1,2)));
+        ListNode.toString(rotateRight(t1,2));
         ListNode t2 = new ListNode(1,new ListNode(2));
-        System.out.println(ListNode.toString(rotateRight(t2,5)));
+        ListNode.toString(rotateRight(t2,5));
 
     }
 }
