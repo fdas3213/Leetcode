@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class TreeNode {
     int val;
     TreeNode left;
@@ -8,12 +11,6 @@ public class TreeNode {
         System.out.println(" " + n.val + " ");
         if (n.left != null) toString(n.left);
         if (n.right != null) toString(n.right);
-    }
-
-    public static void inorder(TreeNode n){
-        if (n.left != null) inorder(n.left);
-        System.out.println(n.val);
-        if (n.right != null) inorder(n.right);
     }
 
     public static void preorder(TreeNode n){
@@ -28,6 +25,19 @@ public class TreeNode {
         System.out.println(n.val);
     }
 
+    public static List<Integer> inOrder(TreeNode root){
+        List<Integer> out = new ArrayList<>();
+        inordertrack(out,root);
+        return out;
+    }
+
+    public static void inordertrack(List<Integer> out, TreeNode root){
+        if (root == null) return;
+        inordertrack(out, root.left);
+        out.add(root.val);
+        inordertrack(out, root.right);
+    }
+
 
     public static void main(String[] args){
         TreeNode t = new TreeNode(3);
@@ -36,11 +46,11 @@ public class TreeNode {
         t.right.left = new TreeNode(15);
         t.right.right = new TreeNode(7);
         //TreeNode.toString(t);
-        System.out.println("Inorder");
-        TreeNode.inorder(t);
         System.out.println("Preorder");
         TreeNode.preorder(t);
         System.out.println("Postorder");
         TreeNode.postorder(t);
+        System.out.println("Inorder");
+        System.out.println(inOrder(t));
     }
 }
