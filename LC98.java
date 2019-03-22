@@ -2,7 +2,7 @@ import java.util.Stack;
 
 public class LC98 {
     public static boolean isValidBST(TreeNode root) {
-        if(root ==  null) return false;
+        if(root ==  null) return true;
         Stack<TreeNode> st = new Stack<>();
         TreeNode pre = null;
         while(!st.empty() || root != null){
