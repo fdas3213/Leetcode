@@ -5,18 +5,17 @@ import java.util.Queue;
 
 public class LC107 {
     public static List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>> out = new ArrayList<>();
-        if(root == null) return out;
-        Queue<TreeNode> queue = new LinkedList<>();
+        List<List<Integer>> out = new LinkedList<>();
+        if (root == null) return out;
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        while (!queue.isEmpty()){
-            List<Integer> inner = new ArrayList<>();
+        while(!queue.isEmpty()){
             int size = queue.size();
+            List<Integer> inner = new ArrayList<>();
             for (int i = 0; i < size; i++){
-                TreeNode cur = queue.poll();
-                if(cur.left != null) queue.offer(cur.left);
-                if(cur.right != null) queue.offer(cur.right);
-                inner.add(cur.val);
+                if(queue.peek().left != null) queue.offer(queue.peek().left);
+                if(queue.peek().right != null) queue.offer(queue.peek().right);
+                inner.add(queue.poll().val);
             }
             out.add(0,inner);
         }
