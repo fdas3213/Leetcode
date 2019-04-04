@@ -20,6 +20,20 @@ public class LC36 {
         return true;
     }
 
+    private static boolean easyValidSudoku(char[][] board){
+        HashSet<String> out = new HashSet<>();
+        for (int i = 0; i < board.length; i++){
+            for (int j = 0; j <board[i].length; j++){
+                char number = board[i][j];
+                if (number != '.'){
+                    if(!out.add(number + "row" + i) || !out.add(number + "col" +j)||
+                            !out.add(number + "square" +i/3+j/3)) return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args){
         HashSet<Integer> test = new HashSet<>();
         for(int i = 0;i < 9;i++){
