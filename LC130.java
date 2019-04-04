@@ -17,40 +17,39 @@ public class LC130 {
             }
             if (board[i][m-1] == 'O') {
                 board[i][m-1] = '+';
-                q.add(String.valueOf(i)+','+ String.valueOf(m-1));
+                q.add(String.valueOf(i)+','+ (m-1));
             }
         }
         for (int j = 0; j < m; j++){
             if (board[0][j] == 'O') {
                 board[0][j] = '+';
-                q.add(String.valueOf('0') +','+ String.valueOf(j));
+                q.add(String.valueOf('0') +','+ (j));
             }
             if (board[n-1][j] == 'O') {
                 board[n-1][j] = '+';
-                q.add(String.valueOf(n-1)+',' +String.valueOf(j));
+                q.add(String.valueOf(n-1)+',' +(j));
             }
         }
         //using bfs to find all connected 'O's
         while (!q.isEmpty()){
             String coor = q.poll();
-            System.out.println("string: " + coor);
             int i = Integer.parseInt(coor.substring(0, coor.indexOf(",")));
-            int j = Integer.parseInt(coor.substring(coor.indexOf(",")+1, coor.length()));
+            int j = Integer.parseInt(coor.substring(coor.indexOf(",")+1));
             if(i+1 <n && board[i+1][j] == 'O') {
                 board[i+1][j] = '+';
-                q.add(String.valueOf(i+1)+','+String.valueOf(j));
+                q.add(String.valueOf(i+1)+','+j);
             }
             if(i-1 >= 0 && board[i-1][j] == 'O') {
                 board[i-1][j] = '+';
-                q.add(String.valueOf(i-1)+','+String.valueOf(j));
+                q.add(String.valueOf(i-1)+','+j);
             }
             if(j+1 < m && board[i][j+1] == 'O'){
                 board[i][j+1] = '+';
-                q.add(String.valueOf(i)+','+String.valueOf(j+1));
+                q.add(String.valueOf(i)+','+(j+1));
             }
             if(j-1 >= 0 && board[i][j-1] == 'O'){
                 board[i][j-1] = '+';
-                q.add(String.valueOf(i)+',' +String.valueOf(j-1));
+                q.add(String.valueOf(i)+',' +(j-1));
             }
         }
         //transform 'O' to 'X', and '+' to 'O'
