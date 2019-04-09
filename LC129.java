@@ -10,7 +10,10 @@ public class LC129 {
     }
 
     public static void main(String[] args){
-
+        TreeNode n = new TreeNode(1);
+        n.left = new TreeNode(2);
+        n.right = new TreeNode(3);
+        System.out.println(sumNumbers(n));
     }
 }
 
