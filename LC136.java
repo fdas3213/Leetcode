@@ -1,20 +1,27 @@
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LC136 {
     public static int singleNumber(int[] nums) {
-        HashMap<Integer, Integer> d = new HashMap<>();
+        Set<Integer> d = new HashSet<>();
         for (int val:nums){
-            if (!d.containsKey(val)) d.put(val,1);
-            else {
-                int value = d.get(val);
-                d.put(val, value+1);
-            }
+            if (!d.add(val)) d.remove(val);
+            else d.add(val);
         }
         int single = 0;
-        for(int val:nums){
-            if (d.get(val) != 2) single = val;
+        for(int val:d){
+            single = val;
         }
         return single;
+    }
+
+    private static int bitSolution(int[] nums){
+        //using bitwise operation
+        int out = 0;
+        for (int n:nums){
+            out ^= n;
+        }
+        return out;
     }
 
     public static void main(String[] args){
