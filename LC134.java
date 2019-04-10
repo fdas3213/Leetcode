@@ -5,8 +5,7 @@ public class LC134 {
         for (int i = 0; i<l; i++){
             int remain = 0;
             for (int j = i; j < i+l; j++){
-                remain += gas[j%l];
-                remain -= cost[j%l];
+                remain += gas[j%l] - cost[j%l];
                 if(remain < 0) break;
             }
             if (remain >= 0) return i;
