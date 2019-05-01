@@ -30,7 +30,7 @@ public class LC130 {
                 q.add(String.valueOf(n-1)+',' +(j));
             }
         }
-        //using bfs to find all connected 'O's
+        //using bfs to find all 'O's that connect to '0's on the border
         while (!q.isEmpty()){
             String coor = q.poll();
             int i = Integer.parseInt(coor.substring(0, coor.indexOf(",")));
