@@ -17,4 +17,24 @@ public class LC119 {
         }
         return out;
     }
+
+    public static List<Integer> getRowSol2(int rowIndex){
+        List<Integer> pre = new ArrayList<>();
+        for (int i = 0; i <= rowIndex; i++) {
+            List<Integer> cur = new ArrayList<>();
+            for (int j = 0; j <= i; j++){
+                if (j == 0 || j == i) cur.add(1);
+                else {
+                    int sum = pre.get(j) + pre.get(j-1);
+                    cur.add(sum);
+                }
+            }
+            pre = cur;
+        }
+        return pre;
+    }
+
+    public static void main(String[] args){
+        System.out.println(getRowSol2(3));
+    }
 }
