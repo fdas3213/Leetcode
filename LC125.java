@@ -4,10 +4,9 @@ public class LC125 {
         if (s == "" || s == null) return false;
         int start = 0, end = s.length()-1;
         s = s.toLowerCase();
-        char char_s, char_e;
         while (start <= end){
-            char_s = s.charAt(start);
-            char_e = s.charAt(end);
+            char char_s = s.charAt(start);
+            char char_e = s.charAt(end);
             if (!Character.isLetterOrDigit(char_s)) start++;
             else if(!Character.isLetterOrDigit(char_e)) end--;
             else {
