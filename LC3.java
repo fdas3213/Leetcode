@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class LC3 {
     public static int lengthOfLongestSubstring(String s){
         if (s.length() == 0) return 0;
@@ -9,6 +12,21 @@ public class LC3 {
             if (idx == -1) out += c;
             else out = out.substring(idx + 1) + c;
             if (out.length() > max) max = out.length();
+        }
+        return max;
+    }
+
+    public static int SlidingWindowSolution(String s){
+        if (s.length() == 0 || s == null) return 0;
+        int left = 0, right = 0, max = 0;
+        Set<Character> set = new HashSet<>();
+        while(right < s.length()){
+            if (set.add(s.charAt(right))){
+                right++;
+                max = Math.max(max, right - left);
+            }else {
+                set.remove(s.charAt(left++));
+            }
         }
         return max;
     }
