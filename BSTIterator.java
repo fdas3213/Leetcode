@@ -24,7 +24,7 @@ public class BSTIterator {
 
     /** @return whether we have a next smallest number */
     public boolean hasNext() {
-        return queue.isEmpty();
+        return !queue.isEmpty();
     }
 
     public static void main(String[] args){
