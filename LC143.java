@@ -41,6 +41,7 @@ public class LC143 {
         ListNode n2 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
         reorderList(n1);
         ListNode.toString(n1);
-        //reorderList(n2);
+        reorderList(n2);
+        ListNode.toString(n2);
     }
 }
