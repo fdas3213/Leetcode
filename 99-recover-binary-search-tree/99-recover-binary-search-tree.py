@@ -11,20 +11,25 @@ class Solution:
         """
         if not root:
             return
-        pre = None
+
         bad_node = []
-        stack = []
-        while stack or root:
-            while root:
-                stack.append(root)
-                root = root.left
-            root = stack.pop()
+        
+        def recover(root):
+            nonlocal pre
+            
+            if not root:
+                return
+            
+            recover(root.left)
             if pre and pre.val >= root.val:
                 bad_node.append((pre, root))
+            
             pre = root
-            root = root.right
-            if len(bad_node) == 2:
-                break
+            
+            recover(root.right)
+        
+        pre = None
+        recover(root)
         temp = bad_node[0][0].val
         bad_node[0][0].val = bad_node[-1][1].val
         bad_node[-1][1].val = temp
