@@ -26,10 +26,10 @@ class Solution:
                 root = None
             # case 2. no left child
             elif root.right and not root.left:
-                root = root.right
+                return root.right
             # case 3. no right child
             elif root.left and not root.right:
-                root = root.left
+                return root.left
             # case 4. has both left and right -> need to find its successor
             else:
                 root.val = self.successor(root)
