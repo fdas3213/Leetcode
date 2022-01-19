@@ -21,7 +21,8 @@ class Solution:
         clone_node = Node(node.val, [])
         self.visited[node] = clone_node
         
-        self.visited[node].neighbors = [self.cloneGraph(n) for n in node.neighbors]
+        if node.neighbors:
+            self.visited[node].neighbors = [self.cloneGraph(n) for n in node.neighbors]
         
         return self.visited[node]
                 
