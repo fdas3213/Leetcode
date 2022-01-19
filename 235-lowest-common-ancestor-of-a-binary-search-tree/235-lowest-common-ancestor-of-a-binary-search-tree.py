@@ -16,11 +16,11 @@ class Solution:
             return q
         
         #three scenarios. 1. p and q on separate side of the tree 2. p and q both on the left side of the root node, then we traverse left tree 3. p and q both on the right side of the root node, then we traverse right tree
-        if (p.val < root.val and q.val > root.val) or (p.val>root.val and q.val < root.val):
+        if min(p.val, q.val) < root.val and max(p.val, q.val) > root.val:
             return root
-        elif p.val < root.val and q.val < root.val:
+        elif max(p.val, q.val) < root.val:
             return self.lowestCommonAncestor(root.left, p, q)
-        elif p.val > root.val and q.val > root.val:
+        elif min(p.val, q.val) > root.val:
             return self.lowestCommonAncestor(root.right, p, q)
             
         return self.lowestCommonAncestor(root, p, q)
