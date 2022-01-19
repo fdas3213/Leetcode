@@ -8,11 +8,10 @@ class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         # inorder traversal
         if not root:
-            return 0
+            return -1
         
         stack = []
         nsmallest = 0
-        pre = None
         while stack or root:
             while root:
                 stack.append(root)
@@ -20,8 +19,7 @@ class Solution:
             root = stack.pop()
             nsmallest += 1
             if nsmallest == k:
-                return root.val
-            pre = root
+                break
             root = root.right
         
-        return pre.val
+        return root.val
