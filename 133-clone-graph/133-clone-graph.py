@@ -7,27 +7,23 @@ class Node:
 """
 
 class Solution:
-
+    def __init__(self):
+        self.visited = {}
+        
     def cloneGraph(self, node: 'Node') -> 'Node':
-        #bfs
+        #dfs
         if not node:
             return node
         
-        visited = {}
-        queue = deque([node])
-        visited[node] = Node(node.val,[])
+        if node in self.visited:
+            return self.visited[node]
         
-        while queue:
-            n = queue.popleft()
-            
-            for neighbor in n.neighbors:
-                if neighbor not in visited:
-                    visited[neighbor] = Node(neighbor.val, [])
-                    queue.append(neighbor)
-            
-                visited[n].neighbors.append(visited[neighbor])
+        clone_node = Node(node.val, [])
+        self.visited[node] = clone_node
         
-        return visited[node]
+        self.visited[node].neighbors = [self.cloneGraph(n) for n in node.neighbors]
+        
+        return self.visited[node]
                 
         
         
