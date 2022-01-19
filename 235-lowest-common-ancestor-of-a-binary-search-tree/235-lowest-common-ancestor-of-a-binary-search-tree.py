@@ -8,21 +8,19 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         if not root:
-            return root
+            return 
 
-        def LCA(root, p, q):
-            if not root:
-                return
-            if p.val == root.val:
-                return p
-            if q.val == root.val:
-                return q
+        if p.val == root.val:
+            return p
+        if q.val == root.val:
+            return q
+        
+        #three scenarios. 1. p and q on separate side of the tree 2. p and q both on the left side of the root node, then we traverse left tree 3. p and q both on the right side of the root node, then we traverse right tree
+        if (p.val < root.val and q.val > root.val) or (p.val>root.val and q.val < root.val):
+            return root
+        elif p.val < root.val and q.val < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+        elif p.val > root.val and q.val > root.val:
+            return self.lowestCommonAncestor(root.right, p, q)
             
-            if (p.val < root.val and q.val > root.val) or (p.val>root.val and q.val < root.val):
-                return root
-            elif p.val < root.val and q.val < root.val:
-                return LCA(root.left, p, q)
-            elif p.val > root.val and q.val > root.val:
-                return LCA(root.right, p, q)
-            
-        return LCA(root, p, q)
+        return self.lowestCommonAncestor(root, p, q)
