@@ -15,16 +15,14 @@ class Trie:
         node.endOfWord = True
             
     def search(self, word: str) -> bool:
-        return self.searchRecursive(self.root, word, 0)
-        
-    def searchRecursive(self, node, word, index):
-        if index == len(word):
-            return node.endOfWord
-        
-        if word[index] in node.children:
-            return self.searchRecursive(node.children[word[index]], word, index+1)
-        
-        return False
+        # an iterative method works here because strings only contain english lowercase letters
+        node = self.root
+        for ch in word:
+            if ch not in node.children:
+                return False
+            node = node.children[ch]
+        return node.endOfWord
+
     
     def startsWith(self, prefix: str) -> bool:
         node = self.root
