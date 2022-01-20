@@ -13,16 +13,14 @@ class Solution:
             if not root:
                 return
             
+            curPath += str(root.val)
+            
             if not root.left and not root.right:
-                curPath += str(root.val)
                 res.append(curPath)
                 return
             
-            curPath += str(root.val)
-            curPath += "->"
-            
-            helper(root.left, curPath, res)
-            helper(root.right, curPath, res)
+            helper(root.left, curPath+"->", res)
+            helper(root.right, curPath+"->", res)
             
         res = []
         helper(root, "", res)
