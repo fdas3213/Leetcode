@@ -7,22 +7,15 @@
 
 class Solution:
     def inorderSuccessor(self, root: 'TreeNode', p: 'TreeNode') -> 'Optional[TreeNode]':
-        #bfs
-        if not root or not p:
-            return None
+        successor = None
         
-        stack = []
-        pre = None
-        node = root
-        while stack or node:
-            while node:
-                stack.append(node)
-                node = node.left
-            node = stack.pop()
-            if pre and pre.val == p.val:
-                return node
-            pre = node
-            node = node.right
+        while root:
+            if p.val >= root.val:
+                #discard the left half of the tree
+                root = root.right
+            else:
+                successor = root
+                root = root.left
         
-        return node
+        return successor
             
