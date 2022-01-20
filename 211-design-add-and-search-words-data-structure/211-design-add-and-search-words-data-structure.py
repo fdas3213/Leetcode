@@ -21,22 +21,23 @@ class WordDictionary:
             
 
     def search(self, word: str) -> bool:
-        return self.searchRecursive(self.root, word, 0)
         
-    def searchRecursive(self, current, word, index):
-        # if index is the last letter of word, check if the current TrieNode is the end of word
-        if index == len(word):
-            return current.endOfWord
-        # if '.', then for every child of current TrieNode, we check if there's a match with any child
-        if word[index] == '.':
-            for child in current.children:
-                if self.searchRecursive(current.children[child], word, index+1):
-                    return True
-        # if there's a match, go deeper   
-        if word[index] in current.children:
-            return self.searchRecursive(current.children[word[index]], word, index+1)
+        def searchRecursive(current, index):
+            # if index is the last letter of word, check if the current TrieNode is the end of word
+            if index == len(word):
+                return current.endOfWord
+            # if '.', then for every child of current TrieNode, we check if there's a match with any child
+            if word[index] == '.':
+                for child in current.children:
+                    if searchRecursive(current.children[child], index+1):
+                        return True
+            # if there's a match, go deeper   
+            if word[index] in current.children:
+                return searchRecursive(current.children[word[index]], index+1)
+
+            return False
         
-        return False
+        return searchRecursive(self.root, 0)
 
 
 # Your WordDictionary object will be instantiated and called as such:
