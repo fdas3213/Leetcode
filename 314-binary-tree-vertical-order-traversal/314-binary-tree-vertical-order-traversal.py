@@ -11,10 +11,13 @@ class Solution:
         
         #levelorder traversal that starts from {0:root}, -1 while traversing left, and +1 while traversing right node
         queue = deque([(root, 0)])
-        root_map = defaultdict(list)
+        nodeMap = defaultdict(list)
+        curmin, curmax = 0, 0
         while queue:
             node, column = queue.popleft()
-            root_map[column].append(node.val)
+            curmin = min(curmin, column)
+            curmax = max(curmax, column)
+            nodeMap[column].append(node.val)
             
             if node.left:
                 queue.append((node.left, column-1))
@@ -22,11 +25,9 @@ class Solution:
                 queue.append((node.right, column+1))
         
         res = []
-        smallest = min(root_map.keys())
-        largest = max(root_map.keys())
         
-        for i in range(smallest, largest+1, 1):
-            res.append(root_map[i])
+        for i in range(curmin, curmax+1, 1):
+            res.append(nodeMap[i])
         
         return res
             
