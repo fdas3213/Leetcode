@@ -1,27 +1,41 @@
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.endOfWord = False
+        
 class WordDictionary:
 
     def __init__(self):
         # use a dictionary to store the key
-        self.word_dict = defaultdict(list)
+        self.root = TrieNode()
 
     def addWord(self, word: str) -> None:
-        # add the word to the dictionary if the word does not already exist
-        word_len = len(word)
-        if word not in self.word_dict[word_len]:
-            self.word_dict[word_len].append(word)
+        current = self.root
+        for ch in word:
+            if ch in current.children:
+                current = current.children[ch]
+            else:
+                current.children[ch] = TrieNode()
+                current = current.children[ch]
+        current.endOfWord = True
+            
 
     def search(self, word: str) -> bool:
-        word_len = len(word)
-        if word_len not in self.word_dict:
-            return False
-        for w in self.word_dict[word_len]:
-            count = word_len
-            for i,c in enumerate(word):
-                if c!='.' and w[i]!=c:
-                    break
-                count -= 1
-            if count == 0:
-                return True
+        return self.searchRecursive(self.root, word, 0)
+        
+    def searchRecursive(self, current, word, index):
+        # if index is the last letter of word, check if the current TrieNode is the end of word
+        if index == len(word):
+            return current.endOfWord
+        # if '.', then for every child of current TrieNode, we check if there's a match with any child
+        if word[index] == '.':
+            for child in current.children:
+                if self.searchRecursive(current.children[child], word, index+1):
+                    return True
+        # if there's a match, go deeper   
+        if word[index] in current.children:
+            return self.searchRecursive(current.children[word[index]], word, index+1)
+        
         return False
 
 
