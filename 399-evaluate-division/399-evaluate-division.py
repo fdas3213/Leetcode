@@ -25,6 +25,23 @@ class Solution:
                         break
             visited.remove(cur_node)
             return val
+        
+        def evaluate_bfs(cur_node, target_node):
+            visited = set()
+            queue = deque([(cur_node, 1)])
+            while queue:
+                cur_node, cur_val = queue.popleft()
+                visited.add(cur_node)
+                if target_node == cur_node:
+                    return cur_val 
+                
+                neighbors = graph[cur_node]
+                
+                for neighbor, val in neighbors.items():
+                    if neighbor in visited:
+                        continue
+                    queue.append((neighbor, cur_val*val))
+            return -1
             
         #step 2. evaluate the query
         res = []
@@ -36,8 +53,7 @@ class Solution:
             elif n1 == n2:
                 res.append(1)
             else:
-                visited = set()
-                res.append(evaluate(n1, n2, 1, visited))
+                res.append(evaluate_bfs(n1, n2))
         
         return res
             
