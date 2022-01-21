@@ -15,12 +15,11 @@ class Solution:
             neighbors = graph[cur_node]
             
             if target_node in neighbors:
-                val = product * neighbors[target_node]
+                return product * neighbors[target_node]
             else:
                 for neighbor, value in neighbors.items():
-                    if neighbor in visited:
-                        continue
-                    val = evaluate(neighbor, target_node, product*value, visited)
+                    if neighbor not in visited:
+                        val = evaluate(neighbor, target_node, product*value, visited)
                     if val != -1:
                         break
             visited.remove(cur_node)
@@ -52,7 +51,10 @@ class Solution:
             elif n1 == n2:
                 res.append(1)
             else:
-                res.append(evaluate_bfs(n1, n2))
+                #dfs
+                visited = set()
+                res.append(evaluate(n1, n2, 1, visited))
+                #bfs: res.append(evaluate_bfs(n1, n2))
         
         return res
             
