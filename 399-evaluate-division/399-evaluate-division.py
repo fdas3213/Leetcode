@@ -47,14 +47,16 @@ class Solution:
             #if either of the node does not exist in the graph
             if n1 not in graph or n2 not in graph:
                 res.append(-1)
+                continue
             #if n1 and n2 is the same node
-            elif n1 == n2:
+            if n1 == n2:
                 res.append(1)
-            else:
-                #dfs
-                visited = set()
-                res.append(evaluate(n1, n2, 1, visited))
-                #bfs: res.append(evaluate_bfs(n1, n2))
+                continue
+            
+            #dfs
+            visited = set()
+            res.append(evaluate(n1, n2, 1, visited))
+            #bfs: res.append(evaluate_bfs(n1, n2))
         
         return res
             
