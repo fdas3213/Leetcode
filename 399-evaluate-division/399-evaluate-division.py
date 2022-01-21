@@ -38,9 +38,8 @@ class Solution:
                 neighbors = graph[cur_node]
                 
                 for neighbor, val in neighbors.items():
-                    if neighbor in visited:
-                        continue
-                    queue.append((neighbor, cur_val*val))
+                    if neighbor not in visited:
+                        queue.append((neighbor, cur_val*val))
             return -1
             
         #step 2. evaluate the query
