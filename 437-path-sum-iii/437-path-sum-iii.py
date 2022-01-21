@@ -9,31 +9,29 @@ class Solution:
         if not root:
             return 0
         
-        self.ans = 0
-        
-        def helper(root, targetSum):
+        def helper(root, targetSum, curPath):
             if not root:
-                return
+                return 0
             
-            targetSum -= root.val
+            curPath.append(root.val)
+            pathCount, pathSum = 0, 0
             
-            if targetSum == 0:
-                self.ans += 1
+            for v in curPath[::-1]:
+                pathSum += v
+                if pathSum == targetSum:
+                    pathCount += 1
             
-            helper(root.left, targetSum)
-            helper(root.right, targetSum)
+            pathCount += helper(root.left, targetSum, curPath)
+            pathCount += helper(root.right, targetSum, curPath)
+            
+            del curPath[-1]
+            
+            return pathCount
         
-        def preorder(root):
-            if not root:
-                return
-            
-            helper(root, targetSum)
-            preorder(root.left)
-            preorder(root.right)
         
-        preorder(root)
+        return helper(root, targetSum, [])
         
-        return self.ans
+        
             
             
                 
