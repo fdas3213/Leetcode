@@ -6,19 +6,24 @@
 #         self.right = right
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
-        total = 0
+        if not root:
+            return 0
         
         def helper(root):
-            nonlocal total
-            
             if not root:
                 return 0
-            if root.left and not root.left.left and not root.left.right:
-                total += root.left.val
             
-            helper(root.left)
-            helper(root.right)
+            total = 0
             
-        helper(root)
-        
-        return total
+            if root.left:
+                if not root.left.left and not root.left.right:
+                    total += root.left.val
+                else:
+                    total += helper(root.left)
+            
+            if root.right:
+                total += helper(root.right)
+            
+            return total
+            
+        return helper(root)
