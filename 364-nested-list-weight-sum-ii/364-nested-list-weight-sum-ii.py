@@ -64,9 +64,4 @@ class Solution:
         
         helper(nestedList, 1)
         
-        sum = 0
-        for v, depth in ans:
-            w = max_depth-depth+1
-            sum += (v*w)
-        
-        return sum
+        return sum([v*(max_depth-depth+1) for v,depth in ans])
