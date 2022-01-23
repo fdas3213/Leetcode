@@ -10,26 +10,32 @@ class Solution:
             return 0
         self.val = 0
         
-        def helper(root):
+        def helper(root, treeMap):
             if not root:
                 return 0
-            left_h = helper(root.left)
-            right_h = helper(root.right)
+            
+            if root in treeMap:
+                return treeMap[root]
+            
+            left_h = helper(root.left, treeMap)
+            right_h = helper(root.right, treeMap)
             
             max_depth = max(left_h, right_h) + 1
             
+            treeMap[root] = max_depth
+            
             return max_depth
         
-        def preorder(root):
+        def preorder(root, treeMap):
             if not root:
                 return
-            max_left = helper(root.left)
-            max_right = helper(root.right)
+            max_left = helper(root.left, treeMap)
+            max_right = helper(root.right, treeMap)
             self.val = max(self.val, max_left+max_right)
             
-            preorder(root.left)
-            preorder(root.right)
+            preorder(root.left, treeMap)
+            preorder(root.right, treeMap)
         
-        preorder(root)
+        preorder(root, {})
         
         return self.val
