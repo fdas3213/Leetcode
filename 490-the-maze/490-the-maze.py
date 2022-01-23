@@ -1,10 +1,12 @@
 class Solution:
     
     def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
-        m, n = len(maze), len(maze[0])
+        
         self.dirs = [[1,0],[-1,0],[0,1],[0,-1]]
     
-        def dfs(i, j, m, n, visited):
+        def dfs(i, j, visited):
+            m, n = len(maze), len(maze[0])
+            
             if (i,j) in visited:
                 return False
             
@@ -26,11 +28,11 @@ class Solution:
                 x -= d[0]
                 y -= d[1]
                 
-                if dfs(x, y, m, n, visited):
+                if dfs(x, y, visited):
                     return True
             
             return False   
         
         s_i, s_j = start[0], start[1]
         
-        return dfs(s_i, s_j, m,n, set())
+        return dfs(s_i, s_j, set())
