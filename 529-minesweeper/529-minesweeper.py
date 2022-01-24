@@ -21,19 +21,23 @@ class Solution:
             count = 0
             for d in dirs:
                 x, y = i+d[0], j+d[1]
-                if 0<=x<m and 0<=y<n and board[x][y]=='M':
+                if x<0 or y<0 or x>=m or y>=n:
+                    continue
+                if board[x][y]=='M':
                     count += 1
             
             if count == 0:
                 board[i][j] = 'B'
             else:
+                #return because we do not need to recursively explore neighbor anymore
                 board[i][j] = str(count)
                 return
             
             for d in dirs:
                 x, y = i+d[0], j+d[1]
-                if 0<=x<m and 0<=y<n:
-                    dfs(board, x, y, dirs)
+                if x<0 or y<0 or x>=m or y>=n:
+                    continue
+                dfs(board, x, y, dirs)
             
 
         dirs = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]
