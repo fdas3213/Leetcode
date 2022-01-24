@@ -9,9 +9,10 @@ class Solution:
             board[i][j]='X'
             return board
         
+        m, n = len(board), len(board[0])
+        
         #dirs has 8 directions according to this problem
-        def dfs(board, i, j, dirs):
-            m, n = len(board), len(board[0])
+        def dfs(board, i, j, m, n, dirs):
 
             #works as visited
             if board[i][j] != 'E':
@@ -37,12 +38,12 @@ class Solution:
                 x, y = i+d[0], j+d[1]
                 if x<0 or y<0 or x>=m or y>=n:
                     continue
-                dfs(board, x, y, dirs)
+                dfs(board, x, y, m, n, dirs)
             
 
         dirs = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]
         
-        dfs(board, i,j, dirs)
+        dfs(board, i,j, m, n, dirs)
         
         return board
                         
