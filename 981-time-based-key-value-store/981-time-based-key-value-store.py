@@ -1,15 +1,14 @@
 class TimeMap:
 
     def __init__(self):
-        self.timeMap = defaultdict(defaultdict)
+        self.timeMap = defaultdict(list)
         self.timeMin = dict()
         
     def set(self, key: str, value: str, timestamp: int) -> None:
-        if key not in self.timeMap:
+        if key not in self.timeMin:
             self.timeMin[key] = float("inf")
-            
-        self.timeMap[key][timestamp] = value
-        self.timeMin[key] = min(timestamp, self.timeMin.get(key))
+        self.timeMap[key].append((timestamp, value)) 
+        self.timeMin[key] = min(self.timeMin[key], timestamp)
 
     def get(self, key: str, timestamp: int) -> str:
         if key not in self.timeMap:
@@ -18,10 +17,18 @@ class TimeMap:
         if timestamp < self.timeMin[key]:
             return ""
         
-        while timestamp not in self.timeMap[key]:
-            timestamp -= 1
+        #binary search to find the maximum timestamp less than the input timestamp
+        arr = self.timeMap[key]
+        left, right = 0, len(arr)
         
-        return self.timeMap[key][timestamp]
+        while left<right:
+            mid = left+(right-left)//2
+            if arr[mid][0]<=timestamp:
+                left = mid+1
+            else:
+                right=mid
+       
+        return arr[right-1][1]
         
 
 
