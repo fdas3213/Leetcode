@@ -18,14 +18,14 @@ class Solution:
         r = random.randint(1, self.cum_sum)
         
         left, right = 0, len(self.cum_weights)-1
-        while left<right:
+        while left<=right:
             mid = left+(right-left)//2
             if self.cum_weights[mid]==r:
                 return mid
             elif r>self.cum_weights[mid]:
                 left=mid+1
             else:
-                right = mid
+                right = mid-1
         return left
 
 
