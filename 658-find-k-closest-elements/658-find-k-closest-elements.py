@@ -3,14 +3,15 @@ class Solution:
         if k == len(arr):
             return arr
         
-        #solution 2. maxheap O(N) time, O(k) space.
-        maxHeap = []
-        for n in arr[:k]:
-            heappush(maxHeap, (-abs(n-x), n))
+        #solution 3. Binary search: O(log(n-k)) time and O(1) space
+        #set right=len(arr)-k because that's the right most index that left pointer can be
+        left, right = 0, len(arr)-k
+        while left<right:
+            mid = left+(right-left)//2
+            #do not use abs here to handle cases where arr[mid]=arr[mid+k], and x is greater than arr[mid+k]. e.g. [1,1,2,2,2,2,2,3,3]
+            if x-arr[mid]>arr[mid+k]-x:
+                left = mid + 1
+            else:
+                right = mid
         
-        for n in arr[k:]:
-            #Heap elements can be tuples. and it will sort by the first element of the tuple
-            if -abs(n-x)>maxHeap[0][0]:
-                heappushpop(maxHeap, (-abs(n-x), n))
-        
-        return sorted([tup[1] for tup in maxHeap])
+        return arr[left:left+k]
