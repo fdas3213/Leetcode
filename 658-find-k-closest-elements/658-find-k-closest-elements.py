@@ -3,12 +3,14 @@ class Solution:
         if k == len(arr):
             return arr
         
-        #solution 1. two pointers. O(N) time, O(1) space.
-        start, end = 0, len(arr)-1
-        while end-start>=k:
-            if abs(arr[end]-x)<abs(arr[start]-x):
-                start += 1
-            else:
-                end -=1
+        #solution 2. maxheap O(N) time, O(k) space.
+        maxHeap = []
+        for n in arr[:k]:
+            heappush(maxHeap, (-abs(n-x), n))
         
-        return arr[start:end+1]
+        for n in arr[k:]:
+            #Heap elements can be tuples. and it will sort by the first element of the tuple
+            if -abs(n-x)>maxHeap[0][0]:
+                heappushpop(maxHeap, (-abs(n-x), n))
+        
+        return sorted([tup[1] for tup in maxHeap])
