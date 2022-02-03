@@ -8,10 +8,9 @@ class Solution:
         if not head or not head.next:
             return head
         pre = None
-        cur = head
-        while cur:
-            n = cur.next
-            cur.next = pre
-            pre = cur
-            cur = n
+        while head:
+            n = head.next
+            head.next = pre
+            pre = head
+            head = n
         return pre
