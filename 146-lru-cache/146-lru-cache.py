@@ -11,10 +11,8 @@ class LRUCache:
         self.kv_pair = {}
         self.head = Node(-1, -1)
         self.tail = Node(-1, -1)
-        self.head.pre = self.tail
         self.head.next = self.tail
         self.tail.pre = self.head
-        self.tail.next = self.head
         self.capacity = capacity
     
     def add_node_to_tail(self, node: Node) -> None:
