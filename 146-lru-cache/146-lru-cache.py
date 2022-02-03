@@ -11,8 +11,10 @@ class LRUCache:
         self.kv_pair = {}
         self.head = Node(-1, -1)
         self.tail = Node(-1, -1)
+        self.head.pre = self.tail
         self.head.next = self.tail
         self.tail.pre = self.head
+        self.tail.next = self.head
         self.capacity = capacity
     
     def add_node_to_tail(self, node: Node) -> None:
@@ -56,10 +58,10 @@ class LRUCache:
         #when the LRU cache is at full capacity, we evict the key next to head
         if len(self.kv_pair)>self.capacity:
             n = self.head.next
-            key_to_evict = n.key
+            del self.kv_pair[n.key]
             self.head.next = n.next
             n.next.pre = self.head
-            del self.kv_pair[key_to_evict]
+            
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
