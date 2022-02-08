@@ -1,25 +1,27 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        #1. bfs
+        #2. backtrack
         res = []
         if not digits:
             return res
-        queue = deque([""])
-        digit_map = {"1":"", "2":"abc","3":"def","4":"ghi",
+        
+        self.digit_map = {"1":"", "2":"abc","3":"def","4":"ghi",
                     "5":"jkl","6":"mno","7":"pqrs","8":"tuv", "9":"wxyz"}
         
-        for i, digit in enumerate(digits):
-            l = len(queue)
-            for j in range(l):
-                prev = queue.popleft()
-                for letter in digit_map[digit]:
-                    cur = prev+letter
-                    if i<len(digits)-1:
-                        queue.append(cur)
-                    else:
-                        res.append(cur)
+        def backtrack(start: int, cur: str):
+            if start==len(digits):
+                res.append(cur)
+                return
+            
+            for i in range(start, len(digits)):
+                #to avoid cases like start=0, i=1, so "d" or "e" or "f" is added to the result list
+                if i > start:
+                    continue
+                digit = digits[i]
+                for letter in self.digit_map[digit]:
+                    backtrack(i+1, cur+letter)
+        
+        backtrack(0, "")
         
         return res
                 
-        
-        
