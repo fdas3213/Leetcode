@@ -8,8 +8,6 @@ class Solution:
             if cursum==0:
                 res.append(list(temp))
                 return
-            elif cursum<0:
-                return
             
             for i in range(start, len(candidates)):
                 if candidates[i]>cursum:
