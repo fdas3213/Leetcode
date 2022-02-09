@@ -12,8 +12,12 @@ class Solution:
                 return
             
             for i in range(start, len(candidates)):
+                if candidates[i]>cursum:
+                    continue
+                    
                 if i>start and candidates[i]==candidates[i-1]:
                     continue
+
                 temp.append(candidates[i])
                 backtrack(i+1, cursum-candidates[i], temp)
                 temp.pop()
