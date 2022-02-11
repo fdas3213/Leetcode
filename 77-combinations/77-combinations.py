@@ -12,10 +12,8 @@ class Solution:
                 return
             
             for i in range(start, n+1):
-                if i in temp or i<start:
-                    continue
                 temp.append(i)
-                dfs(i, temp)
+                dfs(i+1, temp)
                 temp.remove(i)
         
         dfs(1, [])
