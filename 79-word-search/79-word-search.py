@@ -3,7 +3,10 @@ class Solution:
         m, n = len(board), len(board[0])
         used = [[0 for _ in range(n)] for _ in range(m)]
         
-        def dfs(i, j, count, k):
+        def dfs(i, j, k):
+            if k==len(word):
+                return True
+            
             if i<0 or j<0 or i>=m or j>=n or board[i][j]!=word[k] or used[i][j]==1:
                 return False
             
@@ -11,7 +14,7 @@ class Solution:
             if count==len(word):
                 return True
             
-            if dfs(i+1, j, count+1, k+1) or dfs(i-1,j, count+1, k+1) or dfs(i,j+1, count+1, k+1) or dfs(i,j-1, count+1, k+1):
+            if dfs(i+1, j, k+1) or dfs(i-1,j, k+1) or dfs(i,j+1,k+1) or dfs(i,j-1, k+1):
                 return True
             
             used[i][j] = 0
@@ -20,8 +23,7 @@ class Solution:
         
         for i in range(m):
             for j in range(n):
-                if board[i][j] == word[0]:
-                    if dfs(i, j, 1, 0):
+                if board[i][j] == word[0] and dfs(i, j,0):
                         return True
         
         return False
