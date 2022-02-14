@@ -3,16 +3,14 @@ class Solution:
         res = []
         nums.sort()
         def backtrack(start:int, temp:List[int]):
-            if temp in res:
-                return
             res.append(list(temp))
             
             for i in range(start, len(nums)):
-                if i>0 and nums[i]==nums[i-1] and nums[i] not in temp:
+                if i>start and nums[i]==nums[i-1]:
                     continue
                 temp.append(nums[i])
                 backtrack(i+1, temp)
-                temp.remove(nums[i])
+                temp.pop()
         
         backtrack(0, [])
         
