@@ -3,15 +3,16 @@ class Solution:
         
         tasks.sort()
         sessions = []
-        result = [len(tasks)]
+        self.res = len(tasks)
         
         def backtrack(start:int):
-            if len(sessions)>result[0]:
-                #at most n sessions
+            if len(sessions)>self.res:
+                #self.res stores the current best solution, so if number of sessions exceeds this best solution, then there's no reason to continue backtracking, hence return
                 return
             
             if start==len(tasks):
-                result[0] = len(sessions)
+                #when completed all tasks, store the current solution at result[0]
+                self.res = len(sessions)
                 return
             
             for i in range(len(sessions)):
@@ -26,4 +27,4 @@ class Solution:
             
         backtrack(0)
         
-        return result[0]
+        return self.res
