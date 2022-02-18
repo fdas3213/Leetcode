@@ -7,9 +7,8 @@ class Solution:
         
         hl, nl = len(haystack), len(needle)
         pos = 0
-        while pos<=hl-nl:
+        for pos in range(hl-nl+1):
             if haystack[pos]==needle[0] and haystack[pos:pos+nl]==needle:
                 return pos
-            pos += 1
             
         return -1
