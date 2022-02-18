@@ -5,20 +5,19 @@
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        if not head:
-            return head
+        slow, fast = head, head
         
-        fast, slow = head, head
         for i in range(n):
             fast = fast.next
+        #if fast is null, that means n==length of the linkedlist, so we need to remove the head node
         if not fast:
-            #meaning n is the size of head, so we need to remove the first node in the linkedlist
-            return head.next
+            return slow.next
         
         while fast.next:
             fast = fast.next
             slow = slow.next
         
+        #now slow points to the node that needs to be removed
         slow.next = slow.next.next
         
         return head
