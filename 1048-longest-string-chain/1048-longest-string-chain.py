@@ -16,7 +16,8 @@ class Solution:
                 nextstr = curstr[:j] + curstr[j+1:]
                 if nextstr in words:
                     dfs(count+1, nextstr)
-                    strMap[curstr] = count
+            
+            strMap[curstr] = count
             
             self.res = max(self.res, count)
         
