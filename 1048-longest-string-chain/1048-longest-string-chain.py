@@ -2,29 +2,20 @@ class Solution:
     def longestStrChain(self, words: List[str]) -> int:
         words.sort(key=len)
         strMap = {}
-        self.res = 0
+        maxWordSeq = 1
         
-        def dfs(count:int, curstr:str):
-            # terminal condition
-            if len(curstr)==0:
-                return
-            
-            if curstr in strMap:
-                return strMap[curstr]
-            
-            for j in range(len(curstr)):
-                nextstr = curstr[:j] + curstr[j+1:]
-                if nextstr in words:
-                    dfs(count+1, nextstr)
-            
-            strMap[curstr] = count
-            
-            self.res = max(self.res, count)
+        for word in words:
+            curLen = 1
+            for i in range(len(word)):
+                nextWord = word[:i] + word[i+1:]
+                prevLen = strMap.get(nextWord, 0)
+                curLen = max(curLen, prevLen+1)
+                
+            strMap[word] = curLen
+            maxWordSeq = max(maxWordSeq, curLen)
         
-        for word in words[::-1]:
-            dfs(1, word)
-            
-        return self.res
+        return maxWordSeq
+                
             
             
             
