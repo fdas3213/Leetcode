@@ -3,10 +3,8 @@ class Solution:
         if len(s)<=1:
             return 0
         count = 0
-        freq_map = defaultdict(int)
+        freq_map = collections.Counter(s)
         freq_set = set()
-        for ch in s:
-            freq_map[ch] += 1
         
         for ch, freq in freq_map.items():
             while freq>0 and freq in freq_set:
