@@ -41,9 +41,11 @@ class Solution:
         for digit in arr:
             res = res*10 + digit
         
-        if res==n or res>=pow(2,31):
-            return -1
-        else:
-            return res
+        return res if res<pow(2,31) else -1
+        
+        # if res==n or res>=pow(2,31):
+        #     return -1
+        # else:
+        #     return res
         
         
