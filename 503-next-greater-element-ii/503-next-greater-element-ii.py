@@ -19,9 +19,9 @@ class Solution:
         while stack:
             digit_map[stack.pop()] = -1
         
-        res = []
+        res = [-1]*n
         for i, n in enumerate(nums):
-            res.append(digit_map[(i,n)])
+            res[i] = digit_map[(i,n)]
         
         return res
         
