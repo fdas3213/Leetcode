@@ -6,28 +6,23 @@
 #         self.right = right
 class Solution:
     def closestKValues(self, root: Optional[TreeNode], target: float, k: int) -> List[int]:
-        #O(N): traverse the tree and update the maxheap to pop the max distance node
-        maxHeap = []
+        #O(K) to O(N): inorder traversal with a deque. When deque reaches size of k, and distance btw target and new element is larger than dist(first deque element, target), then we can simply stop traversal because future answers will be even further away
+        queue = deque([])
         
-        def dfs(root):
+        def inorder(root):
             if not root:
                 return
-            dist = abs(target-root.val)
-            heappush(maxHeap, (-dist,root.val))
-            if len(maxHeap)>k:
-                heappop(maxHeap)
-            # if target>=root.val:
-            #     dfs(root.right)
-            # else:
-            #     dfs(root.left)
-            dfs(root.left)
-            dfs(root.right)
-        
-        dfs(root)
-        
-        res = []
-        while maxHeap:
-            res.append(heappop(maxHeap)[1])
             
-        return res
+            inorder(root.left)
+            if len(queue)==k:
+                if abs(root.val-target)<abs(queue[0]-target):
+                    queue.popleft()
+                else:
+                    return
+            queue.append(root.val)
+            inorder(root.right)
+        
+        inorder(root)
+        
+        return [v for v in queue]
             
