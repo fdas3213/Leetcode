@@ -11,7 +11,10 @@ class Solution:
             graph[w2].add(w1)
         
         
-        def dfs(graph, visited, src_word, tgt_word):            
+        def dfs(graph, visited, src_word, tgt_word):
+            if src_word not in graph:
+                return False
+            
             if tgt_word in graph[src_word]:
                 return True
             
@@ -28,8 +31,6 @@ class Solution:
             # print(f"w1:{w1}, w2:{w2}")
             if w1==w2:
                 continue
-            if w1 not in graph:
-                return False
             if not dfs(graph, set(), w1, w2):
                 return False
         
