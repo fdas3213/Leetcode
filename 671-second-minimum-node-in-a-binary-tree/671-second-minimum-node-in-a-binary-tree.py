@@ -9,8 +9,7 @@ class Solution:
         if not root or (not root.left and not root.right):
             return -1
         
-        # we just need to find one child node that has a different value than the parent node, and return the child node
-        # child node always has a value greater than its parent node
+        # if we reach a node which has value greater than the root node value, then we do not need to go deeper of that node anymore because the child node's value is at least as large as that node
         queue = deque([root])
         smallest, sec = root.val, float("inf")
         while queue:
@@ -18,12 +17,14 @@ class Solution:
             if root.left:
                 if root.left.val > smallest and root.left.val < sec:
                     sec = root.left.val
-                queue.append(root.left)
+                if root.left.val == root.val:
+                    queue.append(root.left)
                 
             if root.right:
                 if root.right.val > smallest and root.right.val < sec:
                     sec = root.right.val
-                queue.append(root.right)
+                if root.right.val == root.val:
+                    queue.append(root.right)
         
         return sec if sec!=float("inf") else -1
             
