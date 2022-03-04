@@ -33,7 +33,7 @@ class AllOne:
         self.tail = Node()
         self.head.next = self.tail
         self.tail.pre = self.head
-        self.node_freq[0] = self.head
+        # self.node_freq[0] = self.head
     
     def _insert_after(self, node):
         newnode = Node()
