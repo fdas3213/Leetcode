@@ -9,21 +9,21 @@ class Solution:
         if not root or (not root.left and not root.right):
             return -1
         
-        nodes = set()
-        
-        def dfs(root):
-            if not root:
-                return
-            nodes.add(root.val)
-            dfs(root.left)
-            dfs(root.right)
-        
-        dfs(root)
-        
+        # we just need to find one child node that has a different value than the parent node, and return the child node
+        # child node always has a value greater than its parent node
+        queue = deque([root])
         smallest, sec = root.val, float("inf")
-        for v in nodes:
-            if smallest<v<sec:
-                sec = v
+        while queue:
+            root = queue.popleft()
+            if root.left:
+                if root.left.val > smallest and root.left.val < sec:
+                    sec = root.left.val
+                queue.append(root.left)
+                
+            if root.right:
+                if root.right.val > smallest and root.right.val < sec:
+                    sec = root.right.val
+                queue.append(root.right)
         
         return sec if sec!=float("inf") else -1
             
