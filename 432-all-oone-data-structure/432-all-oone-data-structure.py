@@ -98,11 +98,8 @@ class AllOne:
         if newCount==0:
             del self.key_count[key]
             prevNode = self.node_freq[count]
-            print(f"Prevnode: {prevNode.keyset}")
             prevNode.remove_key(key)
-            print(f"Prevnode: {prevNode.keyset}")
             if prevNode.is_empty():
-                print(f"next node of prev node: {prevNode.next.keyset}")
                 self._remove(prevNode)
                 del self.node_freq[count]
         else:
