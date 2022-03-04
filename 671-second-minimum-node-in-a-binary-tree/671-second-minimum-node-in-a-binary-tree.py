@@ -9,24 +9,22 @@ class Solution:
         if not root or (not root.left and not root.right):
             return -1
         
-        # if we reach a node which has value greater than the root node value, then we do not need to go deeper of that node anymore because the child node's value is at least as large as that node
-        queue = deque([root])
-        smallest, sec = root.val, float("inf")
-        while queue:
-            root = queue.popleft()
-            if root.left:
-                if root.left.val > smallest and root.left.val < sec:
-                    sec = root.left.val
-                if root.left.val == root.val:
-                    queue.append(root.left)
-                
-            if root.right:
-                if root.right.val > smallest and root.right.val < sec:
-                    sec = root.right.val
-                if root.right.val == root.val:
-                    queue.append(root.right)
+        min1, self.min2 = root.val, float("inf")
         
-        return sec if sec!=float("inf") else -1
+        def dfs(root):
+            if not root:
+                return
+
+            if root.val > min1 and root.val<self.min2:
+                self.min2 = root.val
+            
+            if root.val == min1:
+                dfs(root.left)
+                dfs(root.right)
+        
+        dfs(root)
+        
+        return self.min2 if self.min2!=float("inf") else -1
             
         
         
