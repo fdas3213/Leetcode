@@ -11,5 +11,8 @@ class Solution:
                 if left_empty and right_empty:
                     count += 1
                     flowerbed[i] = 1
+            
+            if count>=n:
+                return True
         
-        return count-n>=0
+        return False
