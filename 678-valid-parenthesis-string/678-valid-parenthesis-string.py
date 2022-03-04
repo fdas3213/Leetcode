@@ -1,27 +1,25 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
-        ast_stack = []
-        p_stack = [] 
-        
-        for i, ch in enumerate(s):
-            if ch == '(':
-                p_stack.append(i)
-            elif ch == ')':
-                if not p_stack and not ast_stack:
-                    return False
-                elif p_stack:
-                    p_stack.pop()
-                else:
-                    ast_stack.pop()
+        left_balance = 0
+        for ch in s:
+            if ch == '(' or ch == '*':
+                left_balance += 1
             else:
-                ast_stack.append(i)
-        
-        while p_stack and ast_stack:
-            #left parenthesis cannot be after an asterisk
-            if (p_stack.pop() > ast_stack.pop()):
+                left_balance -= 1
+            
+            if left_balance < 0:
+                #there're more right parenthesis than left parenthesis at this stage
                 return False
         
-        #by the end p_stack should not have any open left parenthesis
-        return len(p_stack)==0
+        right_balance = 0
+        for ch in s[::-1]:
+            if ch == ')' or ch == '*':
+                right_balance += 1
+            else:
+                right_balance -= 1
             
-                
+            if right_balance < 0:
+                #there're more left parenthesis than right parenthesis at this stage. e.g. "*((()*". There're enough left parenthesis to cover right parenthesis, but not enough right parenthesis to match left parenthesis
+                return False
+        
+        return True
