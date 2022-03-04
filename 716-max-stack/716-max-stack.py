@@ -1,68 +1,64 @@
 class Node:
     def __init__(self, val, prev=None, next=None):
-        self.val = val
-        self.prev = prev
-        self.next = next
+        self.val=val
+        self.prev=prev
+        self.next=next
     
-    def __lt__(self, other):
-        self.val < other.val
-
 class MaxStack:
 
     def __init__(self):
-        self.head = Node(float('-inf'))
-        self.tail = Node(float('-inf'))
+        #put top node next to head, and least recent node next to tail
+        self.head = Node(-1)
+        self.tail = Node(-1)
         self.head.next = self.tail
         self.tail.prev = self.head
-        self.max_heap = []
+        self.cur_max = float("-inf")
+        #{1: [N(1)], 5: [N(5), N(5)]}
         self.node_map = defaultdict(list)
+
+    def _remove(self, node):
+        pre = node.prev
+        pre.next = node.next
+        node.next.prev = pre
         
     def push(self, x: int) -> None:
-        node = Node(x)
+        newnode = Node(x)
+        temp = self.head.next
+        newnode.next, temp.prev = temp, newnode
+        newnode.prev, self.head.next = self.head, newnode
         
-        node.prev = self.tail.prev
-        node.next = self.tail
-        self.tail.prev.next = node
-        self.tail.prev = node
+        self.node_map[x].append(newnode)
+        self.cur_max = max(self.cur_max, x)
         
-        # the way to customize the heap order is to have each element on the heap to be a tuple, with the first tuple element being one that accepts normal Python comparisons.
-        heappush(self.max_heap, (-x, node))
-        
-        self.node_map[x].append(node)
-        
-
     def pop(self) -> int:
-        node = self.tail.prev
-        node.prev.next = node.next
-        node.next.prev = node.prev
-        
-        self.node_map[node.val].pop()
-        if not self.node_map[node.val]:
-            del self.node_map[node.val]
+        node = self.head.next
+        v = node.val
+        self._remove(node)
+        self.node_map[v].pop()
+        if not self.node_map[v]:
+            del self.node_map[v]
+            if self.cur_max == v:
+                self.cur_max = max(self.node_map.keys()) if self.node_map else float("-inf")
         
         return node.val
-        
+
     def top(self) -> int:
-        return self.tail.prev.val
+        return self.head.next.val
 
     def peekMax(self) -> int:
-        # during the pop(), we didn't remove the element from heap
-        # So here is to remove the the poped elements from heap
-        while -self.max_heap[0][0] not in self.node_map:
-            heappop(self.max_heap)
-        return -self.max_heap[0][0]
-
+        return self.cur_max
+        
     def popMax(self) -> int:
-        #问题出在pop max把前面的给删了，需要在tuple里面再加一个顺序的index..
-        num = self.peekMax()
-        max_node = self.node_map[num].pop()
-        if not self.node_map[num]:
-            del self.node_map[num]
+        max_node = self.node_map[self.cur_max].pop()
+        v = max_node.val
+        self._remove(max_node)
+        if not self.node_map[v]:
+            del self.node_map[v]
         
-        max_node.prev.next = max_node.next
-        max_node.next.prev = max_node.prev
+        #update cur_max
+        self.cur_max = max(self.node_map.keys()) if self.node_map else float("-inf")
         
-        return num
+        return v
         
 
 
