@@ -7,12 +7,12 @@ class Solution:
             graph[n2].append(n1)
         
         
-        visited = {node: 0 for node in graph}
+        visited = set()
         count = 0
         for node in graph:
-            if visited[node]==0:
+            if node not in visited:
                 count += 1
-                visited[node] = 1
+                visited.add(node)
                 self.dfs(node, graph, visited)
         
         return count
@@ -21,6 +21,6 @@ class Solution:
         # visited[node] = 1
         
         for neighbor in graph[node]:
-            if visited[neighbor]==0:
-                visited[neighbor] = 1
+            if neighbor not in visited:
+                visited.add(neighbor)
                 self.dfs(neighbor, graph, visited)
