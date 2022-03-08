@@ -15,11 +15,6 @@ class Solution:
                 elif token=='*':
                     stack.append(e1*e2)
                 else:
-                    if e2<0:
-                        stack.append(int(float(e2)/e1))
-                    elif e1<0:
-                        stack.append(int(e2/float(e1)))
-                    else:
-                        stack.append(e2//e1)
+                    stack.append(int(e2/e1))
         
         return stack[0]
