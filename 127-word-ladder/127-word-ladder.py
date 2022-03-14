@@ -16,7 +16,8 @@ class Solution:
             for i in range(size):
                 # for each word in the queue
                 cur = queue.popleft()
-
+                if cur == endWord:
+                    return count
                 # for each position of the current word
                 for pos, char in enumerate(cur):
                     # for each alphabetic letter
@@ -25,8 +26,6 @@ class Solution:
                             continue
                         newWord = cur[:pos] + letter + cur[pos+1:]
                         if newWord in wordList:
-                            if newWord==endWord:
-                                return count+1
                             wordList.remove(newWord)
                             queue.append(newWord)
             count += 1
