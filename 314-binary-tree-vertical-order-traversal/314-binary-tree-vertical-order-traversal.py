@@ -9,26 +9,24 @@ class Solution:
         if not root:
             return []
         
-        #levelorder traversal that starts from {0:root}, -1 while traversing left, and +1 while traversing right node
+        treeMap = defaultdict(list)
         queue = deque([(root, 0)])
-        nodeMap = defaultdict(list)
-        curmin, curmax = 0, 0
+        min_l, max_l = 0, 0
         while queue:
-            node, column = queue.popleft()
-            curmin = min(curmin, column)
-            curmax = max(curmax, column)
-            nodeMap[column].append(node.val)
+            node, level = queue.popleft()
+            treeMap[level].append(node.val)
+            min_l = min(min_l, level)
+            max_l = max(max_l, level)
             
             if node.left:
-                queue.append((node.left, column-1))
+                queue.append((node.left, level-1))
+            
             if node.right:
-                queue.append((node.right, column+1))
+                queue.append((node.right, level+1))
         
         res = []
-        
-        for i in range(curmin, curmax+1, 1):
-            res.append(nodeMap[i])
+        for i in range(min_l, max_l+1):
+            res.append(treeMap[i])
         
         return res
-            
-            
+        
