@@ -6,27 +6,18 @@ class Solution:
         #two pointers
         res = ""
         
-        while l1>=0 and l2>=0:
-            n1, n2 = int(num1[l1]), int(num2[l2])
-            cursum = n1+n2+mod
-            res = str(cursum%10) + res
-            mod = cursum//10
-            l1 -= 1
-            l2 -= 1
-        
-        while l1>=0:
-            n1 = int(num1[l1])
-            cursum = n1+mod
-            res = str(cursum%10) + res
-            mod = cursum//10
-            l1 -= 1
-        
-        while l2>=0:
-            n2 = int(num2[l2])
-            cursum = n2+mod
-            res = str(cursum%10) + res
-            mod = cursum//10
-            l2 -= 1
+        while l1>=0 or l2>=0:
+            if l1>=0:
+                n1 = int(num1[l1])
+                mod += n1
+                l1 -= 1
+            if l2>=0:
+                n2 = int(num2[l2])
+                mod += n2
+                l2 -= 1
+            
+            res = str(mod%10) + res
+            mod = mod // 10
         
         if mod != 0:
             res = str(mod) + res
