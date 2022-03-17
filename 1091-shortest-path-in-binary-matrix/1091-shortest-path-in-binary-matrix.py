@@ -7,22 +7,20 @@ class Solution:
         
         dirs = [[0,1],[0,-1],[1,0],[-1,0],[1,1],[-1,1],[1,-1],[-1,-1]]
         
-        queue = deque()
-        
-        #use a tuple of (x,y) and update grid values on-the-fly
-        queue.append((0,0))
-        grid[0][0] = 1
+        #use a tuple of (x,y,dist) to not modify input
+        queue = deque([(0,0,1)])
+        visited = {(0,0)}
         
         while queue:
-            x,y = queue.popleft()
+            x,y,dist = queue.popleft()
             if x==m-1 and y==n-1:
-                return grid[x][y]
+                return dist
             
             for d in dirs:
                 new_x, new_y = x+d[0], y+d[1]
-                if new_x<0 or new_y<0 or new_x>=m or new_y>=n or grid[new_x][new_y]!=0:
+                if new_x<0 or new_y<0 or new_x>=m or new_y>=n or grid[new_x][new_y]!=0 or (new_x,new_y) in visited:
                     continue
-                grid[new_x][new_y] = grid[x][y] + 1
-                queue.append((new_x, new_y))
+                queue.append((new_x, new_y, dist+1))
+                visited.add((new_x,new_y))
         
         return -1
