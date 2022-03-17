@@ -8,11 +8,11 @@ class Solution:
         
         while l1>=0 or l2>=0:
             if l1>=0:
-                n1 = int(num1[l1])
+                n1 = ord(num1[l1])-ord('0')
                 mod += n1
                 l1 -= 1
             if l2>=0:
-                n2 = int(num2[l2])
+                n2 = ord(num2[l2])-ord('0')
                 mod += n2
                 l2 -= 1
             
