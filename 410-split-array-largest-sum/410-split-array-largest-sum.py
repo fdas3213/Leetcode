@@ -19,7 +19,7 @@ class Solution:
             return count<=m
             
         #search space: [max(nums), sum(nums)]
-        left, right, minSum = max(nums), sum(nums), sum(nums)
+        left, right = max(nums), sum(nums)
         
         while left<right:
             mid = left+(right-left)//2
@@ -27,13 +27,13 @@ class Solution:
                 #since mid is valid, right should set to mid to be included in 
                 #the search space so that we try a value<=mid
                 right = mid
-                minSum = mid
             else:
                 #since mid is not valid, left should be set to mid+1 so that
                 #it's not included in the search space
                 left=mid+1
         
-        return minSum
+        # in the end, right will be the smallest valid answer
+        return right
                 
         
         
