@@ -8,9 +8,7 @@ class Solution:
         groups = defaultdict(int)
         for i in range(m):
             for j in range(n):
-                if i-j not in groups:
-                    groups[i-j] = matrix[i][j]
-                elif groups[i-j] != matrix[i][j]:
+                if i>0 and j>0 and matrix[i][j] != matrix[i-1][j-1]:
                     return False
         
         return True
