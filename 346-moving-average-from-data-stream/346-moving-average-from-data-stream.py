@@ -16,10 +16,7 @@ class MovingAverage:
         if self.count > self.windowSize:
             self.windowSum -= self.prev.popleft()
         
-        if self.count<self.windowSize:
-            return self.windowSum/self.count
-        else:
-            return self.windowSum/self.windowSize
+        return self.windowSum/self.count if self.count<self.windowSize else self.windowSum/self.windowSize
 
 
 # Your MovingAverage object will be instantiated and called as such:
