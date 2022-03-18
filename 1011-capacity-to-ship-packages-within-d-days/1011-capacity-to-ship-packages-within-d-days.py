@@ -7,11 +7,11 @@ class Solution:
         """
         
         def check(capacity):
-            count, cumSum = 0, 0
+            count, cumSum = 1, 0
             for weight in weights:
                 #if a single weight is greater than capacity, then there's no way
                 #to ship this item
-                if weight>capacity:
+                if weight>capacity or count>days:
                     return False
                 #when cumSum reaches the maximum load
                 if cumSum+weight>capacity:
@@ -19,9 +19,6 @@ class Solution:
                     count += 1
                     
                 cumSum += weight
-            
-            if cumSum>0:
-                count += 1
                 
             return count<=days
         
