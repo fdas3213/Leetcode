@@ -1,30 +1,39 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
+        """
+        Define a search range: [sum(weights)//days, sum(weights)].
+        To ship weights within "days" days, on average at least totalWeight/days 
+        needs to be shipped, otherwise cannot complete the task. 
+        """
         
-        def canShip(weight):
-            #check if we ship at most "weight" everyday, can we complete within "days" days
-            total = 0
-            d = 1
-            for w in weights:
-                total += w
-                if total > weight:
-                    d += 1
-                    total = w
-                if d > days:
+        def check(capacity):
+            count, cumSum = 0, 0
+            for weight in weights:
+                #if a single weight is greater than capacity, then there's no way
+                #to ship this item
+                if weight>capacity:
                     return False
+                #when cumSum reaches the maximum load
+                if cumSum+weight>capacity:
+                    cumSum = 0
+                    count += 1
+                    
+                cumSum += weight
             
-            return True
+            if cumSum>0:
+                count += 1
+                
+            return count<=days
         
-        #The mininum we should ship on any day is the max weight b.c. otherwise we cannot complete this task. 
-        #The maximum we can ship on any day is the sum of all weights
-        left, right = max(weights), sum(weights)
-        while left < right:
+        left, right = sum(weights)//days, sum(weights)
+        while left<right:
             mid = left+(right-left)//2
-            if not canShip(mid):
-                #if we cannot complete shipping within "days" days, then we need to increase the shipping weight, so we move left pointer 
-                left = mid + 1
-            else:
-                #if we can complete shipping within "days" days, then the maximum boundary is mid because it guarantees a solution, which may or may not be the optimal one, so right needs to be inclusive of mid
+            if check(mid):
+                #when mid capacity is valid, then set right to mid 
+                #because right is also an valid answer and should be in the search space
                 right = mid
+            else:
+                #when mid is invalid, then it's not a valid answer, hence setting left=mid+1
+                left = mid+1
         
-        return left
+        return right
