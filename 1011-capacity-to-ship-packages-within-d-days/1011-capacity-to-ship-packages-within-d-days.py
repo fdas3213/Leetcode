@@ -1,9 +1,9 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         """
-        Define a search range: [sum(weights)//days, sum(weights)].
-        To ship weights within "days" days, on average at least totalWeight/days 
-        needs to be shipped, otherwise cannot complete the task. 
+        Define a search range: [max(weights), sum(weights)].
+        To ship weights within "days" days, the capacity should be at least max(weights),
+        otherwise there're items that cannot be loaded
         """
         
         def check(capacity):
@@ -22,7 +22,7 @@ class Solution:
                 
             return count<=days
         
-        left, right = sum(weights)//days, sum(weights)
+        left, right = max(weights), sum(weights)
         while left<right:
             mid = left+(right-left)//2
             if check(mid):
