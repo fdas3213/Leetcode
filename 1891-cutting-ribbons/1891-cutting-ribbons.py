@@ -8,7 +8,7 @@ class Solution:
             for ribbon in ribbons:
                 count += (ribbon//ribbon_len)
             
-            return True if count>=k else False
+            return count>=k
         
         left, right = 1, max(ribbons)
         
