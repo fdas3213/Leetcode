@@ -1,18 +1,25 @@
 class Solution:
     def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
-        l1, l2, n = -1, -1, len(wordsDict)
-        min_dist = n
+        #initialize the dictionary
+        wordMap = defaultdict(list)
+        count = 0
         for index, word in enumerate(wordsDict):
-            if word==word1:
-                l1 = index
-            elif word==word2:
-                l2 = index
-            
-            if l1!=-1 and l2!=-1:
-                min_dist = min(min_dist, abs(l1-l2))
-            
-            if min_dist == 1:
-                #the minimum distance is 1, so if we reach this distance, we directly return
-                return min_dist
+            wordMap[word].append(index)
+            count += 1
         
-        return min_dist
+        w1_list, w2_list = wordMap[word1], wordMap[word2]
+        p1, p2 = 0, 0
+        
+        curMin = count
+        while p1<len(w1_list) and p2<len(w2_list):
+            m1, m2 = w1_list[p1], w2_list[p2]
+            curMin = min(curMin, abs(m1-m2))
+            if m1<m2:
+                p1 += 1
+            else:
+                p2 += 1
+        
+        return curMin
+            
+        
+        
