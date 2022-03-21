@@ -6,25 +6,23 @@
 #         self.right = right
 class Solution:
     def findSecondMinimumValue(self, root: Optional[TreeNode]) -> int:
-        if not root or (not root.left and not root.right):
+        # edge case
+        if not root:
             return -1
         
-        min1, self.min2 = root.val, float("inf")
+        self.curMin = float("inf")
         
-        def dfs(root):
+        def dfs(root, smallest):
             if not root:
                 return
-
-            if root.val > min1 and root.val<self.min2:
-                self.min2 = root.val
+            if root.val>smallest:
+                self.curMin = min(self.curMin, root.val)
             
-            if root.val == min1:
-                dfs(root.left)
-                dfs(root.right)
+            dfs(root.left, smallest)
+            dfs(root.right, smallest)
         
-        dfs(root)
-        
-        return self.min2 if self.min2!=float("inf") else -1
+        dfs(root, root.val)
+        return self.curMin if self.curMin!=float("inf") else -1
             
         
-        
+            
