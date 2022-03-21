@@ -1,64 +1,59 @@
 class Node:
-    def __init__(self, val, prev=None, next=None):
-        self.val=val
-        self.prev=prev
-        self.next=next
-    
+    def __init__(self, val, pre=None, next=None):
+        self.val = val
+        self.pre = pre
+        self.next = next
+        
 class MaxStack:
 
     def __init__(self):
-        #put top node next to head, and least recent node next to tail
+        # add from head, so that elements are also popped from head node
         self.head = Node(-1)
         self.tail = Node(-1)
         self.head.next = self.tail
-        self.tail.prev = self.head
-        self.cur_max = float("-inf")
-        #{1: [N(1)], 5: [N(5), N(5)]}
-        self.node_map = defaultdict(list)
-
-    def _remove(self, node):
-        pre = node.prev
-        pre.next = node.next
-        node.next.prev = pre
+        self.tail.pre = self.head
+        self.nodeMap = defaultdict(list)
+        self.max = float("-inf")
         
     def push(self, x: int) -> None:
-        newnode = Node(x)
-        temp = self.head.next
-        newnode.next, temp.prev = temp, newnode
-        newnode.prev, self.head.next = self.head, newnode
+        node = Node(x)
+        nxt = self.head.next
+        node.next, nxt.pre = nxt, node
+        node.pre, self.head.next = self.head, node
         
-        self.node_map[x].append(newnode)
-        self.cur_max = max(self.cur_max, x)
+        self.nodeMap[x].append(node)
+        self.max = max(self.max, x)
+    
+    def _remove(self, node):
+        prev = node.pre
+        prev.next = node.next
+        node.next.pre = prev
         
+        nodeVal = node.val
+        self.nodeMap[nodeVal].pop()
+        if not self.nodeMap[nodeVal]:
+            del self.nodeMap[nodeVal]
+            if self.max==nodeVal:
+                self.max = max(self.nodeMap.keys()) if self.nodeMap else float("-inf")
+
     def pop(self) -> int:
         node = self.head.next
-        v = node.val
         self._remove(node)
-        self.node_map[v].pop()
-        if not self.node_map[v]:
-            del self.node_map[v]
-            if self.cur_max == v:
-                self.cur_max = max(self.node_map.keys()) if self.node_map else float("-inf")
-        
         return node.val
 
     def top(self) -> int:
         return self.head.next.val
-
+        
     def peekMax(self) -> int:
-        return self.cur_max
-        
+        return self.max
+
     def popMax(self) -> int:
-        max_node = self.node_map[self.cur_max].pop()
-        v = max_node.val
-        self._remove(max_node)
-        if not self.node_map[v]:
-            del self.node_map[v]
+        maxNode = self.nodeMap[self.max][-1]
+        self._remove(maxNode)
         
-        #update cur_max
-        self.cur_max = max(self.node_map.keys()) if self.node_map else float("-inf")
+        self.max = max(self.nodeMap.keys()) if self.nodeMap else float("-inf")
         
-        return v
+        return maxNode.val
         
 
 
