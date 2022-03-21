@@ -51,8 +51,6 @@ class MaxStack:
         maxNode = self.nodeMap[self.max][-1]
         self._remove(maxNode)
         
-        self.max = max(self.nodeMap.keys()) if self.nodeMap else float("-inf")
-        
         return maxNode.val
         
 
