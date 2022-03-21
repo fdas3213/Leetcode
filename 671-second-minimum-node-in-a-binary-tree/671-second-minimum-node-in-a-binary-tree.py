@@ -18,9 +18,10 @@ class Solution:
             if root.val>smallest:
                 self.curMin = min(self.curMin, root.val)
             
-            dfs(root.left, smallest)
-            dfs(root.right, smallest)
-        
+            if root.val==smallest:
+                dfs(root.left, smallest)
+                dfs(root.right, smallest)
+
         dfs(root, root.val)
         return self.curMin if self.curMin!=float("inf") else -1
             
