@@ -1,33 +1,38 @@
 class Solution:
     def sortTransformedArray(self, nums: List[int], a: int, b: int, c: int) -> List[int]:
-        def quad(x,a,b,c):
-            return a*x*x + b*x + c
-            
-        #vertex is -2a/b
-        n = len(nums)
-        res = [0 for _ in range(n)]
-        left, right = 0, n-1
-        index = n-1 if a>=0 else 0
+        
+        def compute(x):
+            return a*x*x+b*x+c
+        
+        l = len(nums)
+        #initialize result
+        res = [0 for _ in range(l)]
+        
+        p = 0 if a<0 else l-1
+        left, right = 0, l-1
         
         while left<=right:
-            # we do not need to care about a==0 because in that case the quadratic function becomes a linear line, where min/max must be on either end of the input list
+            left_n, right_n = nums[left], nums[right]
+            left_v, right_v = compute(left_n), compute(right_n)
             if a>=0:
-                left_v, right_v = quad(nums[left], a, b, c), quad(nums[right],a,b,c)
-                if left_v < right_v:
-                    res[index] = right_v
-                    right -= 1
-                else:
-                    res[index] = left_v
+                #in this case, we fill out the result array from the tail
+                if left_v>=right_v:
+                    res[p] = left_v
                     left += 1
-                index -= 1
+                else:
+                    res[p] = right_v
+                    right -= 1
+                #decrement p since we're filling in bigger values first
+                p -= 1
             else:
-                left_v, right_v = quad(nums[left], a, b, c), quad(nums[right],a,b,c)
-                if left_v < right_v:
-                    res[index] = left_v
+                #in this case, we fill out the result array from the head
+                if left_v<=right_v:
+                    res[p] = left_v
                     left += 1
                 else:
-                    res[index] = right_v
+                    res[p] = right_v
                     right -= 1
-                index += 1
+                #increment p since we're filling in smaller values first
+                p += 1
         
         return res
