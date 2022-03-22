@@ -10,15 +10,13 @@ class Solution:
             return root
         temp, pre, nxt = None, None, None
         while root:
-            # next node is the left node
             nxt = root.left
-            
             root.left = temp
+            
             temp = root.right
-            
             root.right = pre
+            
             pre = root
-            
             root = nxt
-            
+        
         return pre
