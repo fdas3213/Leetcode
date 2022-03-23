@@ -8,12 +8,12 @@ class Solution:
             return False
         
         l1, l2 = len(word), len(abbr)
-        p1, p2 = 0,0
-        preSum = 0
-        while p1<l1 and p2<l2:
+        p1, preSum = 0, 0
+        for p2 in range(l2):
             c2 = abbr[p2]
             if c2.isdigit():
-                if preSum==0 and int(c2)==0:
+                if preSum==0 and c2=='0':
+                    # in this case, '0' does not equal any letter, so return False
                     return False
                 preSum = preSum*10 + int(c2)
             else:
@@ -27,7 +27,7 @@ class Solution:
                     return False
                 # increment p1 by 1
                 p1 += 1
-            p2 += 1
         
-        return p1+preSum==l1 and p2==l2
+        #check that the total length of two words should match
+        return p1+preSum==l1 
             
