@@ -15,13 +15,16 @@ class Solution:
             while left<=right:
                 mid = left+(right-left)//2
                 cur = binaryMatrix.get(row, mid)
+                # if the middle element is 0, we search the right half
                 if cur<1:
+                    if mid>res:
+                        break
                     left = mid+1
                 else:
                     if cur==1:
                         res = min(res, mid)
                     right = mid - 1
-                
+                # no need to further search if column 0 is already the solution
                 if res == 0:
                     return res
         
