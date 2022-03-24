@@ -11,14 +11,12 @@ class Solution:
         n, m = binaryMatrix.dimensions()
         res = m
         for row in range(n):
-            left, right = 0, m-1
+            left, right = 0, res-1
             while left<=right:
                 mid = left+(right-left)//2
                 cur = binaryMatrix.get(row, mid)
                 # if the middle element is 0, we search the right half
                 if cur<1:
-                    if mid>res:
-                        break
                     left = mid+1
                 else:
                     if cur==1:
