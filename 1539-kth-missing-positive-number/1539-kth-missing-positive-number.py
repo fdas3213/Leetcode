@@ -1,12 +1,24 @@
 class Solution:
     def findKthPositive(self, arr: List[int], k: int) -> int:
-        maxVal = arr[-1]
-        #iterate from 1 to maxVal, and decrement k when i is missing from the array
-        for i in range(1, maxVal+1):
-            if i not in arr:
-                k -= 1
-            if k==0:
-                return i
-        
-        #if the arr is sorted from [1, maxVal] at an interval of 1, then return maxVal+k
-        return maxVal+k
+        left, right = 0, len(arr)-1
+        while left<=right:
+            mid = left+(right-left)//2
+            """
+            The number of positive integers which are missing before the arr[idx] is equal to arr[idx] - idx - 1.
+            check number of missing values before index "mid"
+            """
+            missing_count  = arr[mid]-(mid+1)
+            # if k==missing_count:
+            #     return arr[mid]-1
+            # search on the right side if number of missing integers are less than
+            # k before index "mid"
+            if k>missing_count:
+                left = mid+1
+            else:
+                right = mid-1
+        """
+        number of missing integers before "right" is "arr[right]-(right+1)"
+        total number of missing integers after "right" is then k-(arr[right]-right+1)
+        the actual value would then be arr[right] + k-(arr[right]-right+1)=k+right+1
+        """
+        return k+(right+1)
