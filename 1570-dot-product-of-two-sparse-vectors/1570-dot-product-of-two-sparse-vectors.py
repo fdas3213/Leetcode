@@ -8,6 +8,9 @@ class SparseVector:
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
         ans = 0
+        # optimization: iterate over the shorter hashmap
+        if len(vec.numMap) < len(self.numMap):
+            self.numMap, vec.numMap = vec.numMap, self.numMap
         for k in self.numMap:
             if k in vec.numMap:
                 ans += self.numMap[k] * vec.numMap[k]
