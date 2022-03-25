@@ -6,9 +6,8 @@ class Solution:
             charMap[char] = index
             
         #iterate over words list for comparison
-        for i in range(1, len(words)):
-            pre = words[i-1]
-            cur = words[i]
+        pre = words[0]
+        for cur in words[1:]:
             # need to know if the current word is longer than previous word
             longer = True if len(pre)>len(cur) else False
             min_len = min(len(pre), len(cur))
@@ -19,6 +18,8 @@ class Solution:
                 
             if (p<min_len and charMap[pre[p]]>charMap[cur[p]]) or (p==min_len and longer):
                 return False
+            
+            pre = cur
             
         return True
     
