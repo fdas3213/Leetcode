@@ -9,25 +9,18 @@ class Solution:
         if not root or (not root.left and not root.right):
             return root.val
         
-        queue = deque()
+        #need to be negative infinity because target could be less than the smallest node value in the tree
+        pre = float("-inf")
         stack = []
         
         while stack or root:
             while root:
                 stack.append(root)
                 root = root.left
-            
             root = stack.pop()
-            
-            if not queue:
-                queue.append(root.val)
-            else:
-                if abs(target-queue[0])>abs(target-root.val):
-                    queue.popleft()
-                    queue.append(root.val)
-                else:
-                    return queue[0]
-            
+            if target>=pre and target< root.val:
+                return pre if abs(pre-target)<abs(root.val-target) else root.val
+            pre = root.val
             root = root.right
             
-        return queue[0]
+        return pre
