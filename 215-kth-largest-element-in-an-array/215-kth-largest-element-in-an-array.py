@@ -3,8 +3,11 @@ class Solution:
         
         def partition(left, right):
             i, j = left, right
-            #choose the first element as the pivot element
-            pivot = nums[left]
+            # randomly choose a pivot for optimization
+            r = random.randint(left, right)
+            pivot = nums[r]
+            # swap pivot with the first element
+            nums[i], nums[r] = nums[r], nums[i]
             
             while i<j:
                 #place all elements less than pivot to the left of pivot
@@ -22,7 +25,8 @@ class Solution:
             return j
         
         left, right = 0, len(nums)-1
-        #kth largest is the (l-k)th smallest element. [1,2,3,4,5], 2nd largest element is the 3rd smallest element
+        #kth largest element is the same as N - kth smallest element. 
+        #[1,2,3,4,5], 2nd largest element is the 3rd smallest element
         k = len(nums)-k
         while left<right:
             pivotIndex = partition(left, right)
