@@ -25,18 +25,30 @@ class Solution:
             preorder(root.right)
         
         preorder(root)
-
-        queue = deque([(target.val, 0)])
+        ans = []
         visited = set()
         visited.add(target.val)
-        ans = []
-        while queue:
-            cur, dist = queue.popleft()
+        
+        # queue = deque([(target.val, 0)])
+        
+        # while queue:
+        #     cur, dist = queue.popleft()
+        #     if dist==k:
+        #         ans.append(cur)
+        #     for neighbor in graph[cur]:
+        #         if neighbor not in visited:
+        #             queue.append((neighbor, dist+1))
+        #             visited.add(neighbor)
+        
+        #dfs approach
+        def dfs(cur, dist):
             if dist==k:
                 ans.append(cur)
             for neighbor in graph[cur]:
                 if neighbor not in visited:
-                    queue.append((neighbor, dist+1))
                     visited.add(neighbor)
+                    dfs(neighbor, dist+1)
         
+        dfs(target.val, 0)
+            
         return ans
