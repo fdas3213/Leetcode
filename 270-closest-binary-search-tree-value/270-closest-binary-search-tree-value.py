@@ -9,18 +9,12 @@ class Solution:
         if not root or (not root.left and not root.right):
             return root.val
         
-        #need to be negative infinity because target could be less than the smallest node value in the tree
-        pre = float("-inf")
-        stack = []
-        
-        while stack or root:
-            while root:
-                stack.append(root)
+        closest = root.val
+        while root:
+            closest = min(root.val, closest, key=lambda x: abs(x-target))
+            if target<root.val:
                 root = root.left
-            root = stack.pop()
-            if target>=pre and target< root.val:
-                return pre if abs(pre-target)<abs(root.val-target) else root.val
-            pre = root.val
-            root = root.right
-            
-        return pre
+            else:
+                root = root.right
+        
+        return closest
