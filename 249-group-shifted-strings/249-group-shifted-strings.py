@@ -12,8 +12,4 @@ class Solution:
                 cur_diff.append(diff)
             mapping[tuple(cur_diff)].append(word)
         
-        ans = []
-        for diff, words in mapping.items():
-            ans.append(words)
-        
-        return ans
+        return list(mapping.values())
