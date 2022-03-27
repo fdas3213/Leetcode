@@ -1,32 +1,29 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        # use a stack to record the indices of open parenthesis
+        """
+        1. balance should not be negative at any point
+        2. balance should be 0 in the end
+        """
+        # use a stack to store the indices of open parenthesis that do not have a matching closing parenthesis
         stack = []
-        # use a list to record non-matching closing parenthesis
-        closing_index = []
-        # use a variable to check the balance
+        # use another list to store the indices of closing parenthesis that do not have a matching open parenthesis
+        closing = []
         
-        """
-        at the end, we build a new string that ignores indices from 
-        stack(which are open parenthesis that have no matching closing parenthesis) 
-        and indices from closing_index list
-        """
-        
-        for idx, c in enumerate(s):
-            if c not in "()":
+        for index, ch in enumerate(s):
+            if ch!='(' and ch!=')':
                 continue
-            if c=='(':
-                stack.append(idx)
+                
+            if ch=='(':
+                stack.append(index)
             elif not stack:
-                #this means c==')' and balance<=0, which means the current closing parenthesis
-                #does not have a matching open parenthesis
-                closing_index.append(idx)
+                # no matching open parenthesis
+                closing.append(index)
             else:
                 stack.pop()
         
         ans = ""
-        for idx, c in enumerate(s):
-            if idx not in stack and idx not in closing_index:
-                ans += c
-
+        for index, ch in enumerate(s):
+            if index not in stack and index not in closing:
+                ans += ch
+        
         return ans
