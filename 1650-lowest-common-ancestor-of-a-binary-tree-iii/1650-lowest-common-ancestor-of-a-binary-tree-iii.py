@@ -10,17 +10,20 @@ class Node:
 
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
-        # O(H) solution
-        visited = set()
-
+        parent_set = set()
+        
+        """
+        Idea: swim up p node to add all possible parents to the set.
+        Then swim up q node, and when q node is found in the set, return the node.
+        """
+        
         while p:
-            visited.add(p)
+            parent_set.add(p)
             p = p.parent
         
         while q:
-            if q in visited:
-                #this means q is already on the path of q->root, which is the LCA of p&q
+            if q in parent_set:
                 return q
             q = q.parent
         
-        return q
+        return p
