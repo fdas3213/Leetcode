@@ -9,17 +9,18 @@ class Node:
 
 class Solution:
     def __init__(self):
+        # construct a hashmap
         self.visited = {}
-    
+        
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        if not head:
+        if not head: 
             return head
         
         if head in self.visited:
             return self.visited[head]
-        
-        clone_node = Node(head.val, None, None)
-        self.visited[head] = clone_node
+
+        copyNode = Node(head.val)
+        self.visited[head] = copyNode
         
         if head.next:
             self.visited[head].next = self.copyRandomList(head.next)
