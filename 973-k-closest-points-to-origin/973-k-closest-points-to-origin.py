@@ -1,26 +1,40 @@
-class Point:
-    def __init__(self, x,y):
-        self.x = x
-        self.y = y
-    
-    def dist(self):
-        # negative sign turns smaller distance to larger negative values. i.e. 2<5 -> -2>-5
-        return -(self.x**2+self.y**2)
-    
-    def __lt__(self, point):
-        return self.dist() < point.dist()
     
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        #use a maxheap: O(nlog(k))
-        maxHeap = []
+        #quickselect O(N)
+    
+        def dist(point):
+            x, y =point[0],point[1]
+            return x**2+y**2
         
-        for x, y in points[:k]:
-            point = Point(x,y)
-            heappush(maxHeap, point)
+        def partition(left, right):
+            r = random.randint(left,right)
+            i, j = left, right
+            pivot = points[r]
+            #swap pivot with the first element
+            points[i], points[r] = points[r], points[i]
+            
+            while i<j:
+                while i<len(points) and dist(points[i])<=dist(pivot):
+                    i += 1
+                while j>0 and dist(points[j])>dist(pivot):
+                    j -= 1
+                if i<j:
+                    #swap 
+                    points[i], points[j] = points[j], points[i]
+            
+            #swap j with pivot element
+            points[j], points[left] = points[left], points[j]
+            return j
         
-        for x,y in points[k:]:
-            point = Point(x,y)
-            heappushpop(maxHeap, point)
+        left, right = 0, len(points)-1
+        while left<=right:
+            pivot_index = partition(left, right)
+            if pivot_index==k-1:
+                return points[:k]
+            elif pivot_index>k:
+                right = pivot_index-1
+            else:
+                left = pivot_index+1
         
-        return [[item.x, item.y] for item in maxHeap]
+        return points[:k]
