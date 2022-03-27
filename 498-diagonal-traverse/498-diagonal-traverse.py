@@ -1,26 +1,19 @@
 class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
-        res = []
+        matMap = defaultdict(deque)
+        
         m, n = len(mat), len(mat[0])
-        # edge case
-        if m==1 and n==1:
-            return [1]
-        
-        # the key here is that diagonal elements have the same row+col value
-        max_index = m*n
-        diag_sum = defaultdict(deque)
-        
         for i in range(m):
             for j in range(n):
-                coor_sum = i+j
-                if coor_sum%2==0:
-                    diag_sum[coor_sum].appendleft(mat[i][j])
+                curlevel = i+j
+                if curlevel%2!=0:
+                    matMap[curlevel].append(mat[i][j])
                 else:
-                    diag_sum[coor_sum].append(mat[i][j])
+                    matMap[curlevel].appendleft(mat[i][j])
         
-        for i in range(max_index):
-            res.extend(diag_sum[i])
-            
-        return res
-                
-                
+        ans = []
+        for i in range(0, m+n-1):
+            ans += list(matMap[i])
+        
+        return ans
+                    
