@@ -6,23 +6,20 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
+        self.ans = 0
         
-        def helper(root, curSum):
-            nonlocal totalSum
-            
+        def dfs(root, cur):
+            # terminal condition
             if not root:
                 return
-            curSum = curSum * 10 + root.val
+            
             if not root.left and not root.right:
-                #at the leaf node
-                totalSum += curSum
-            else:
-                helper(root.left, curSum)
-                helper(root.right, curSum)
+                self.ans += cur*10+root.val
+                return
+            
+            dfs(root.left, cur*10+root.val)
+            dfs(root.right, cur*10+root.val)
         
-        totalSum = 0
-        helper(root, 0)
+        dfs(root, 0)
         
-        return totalSum
+        return self.ans
