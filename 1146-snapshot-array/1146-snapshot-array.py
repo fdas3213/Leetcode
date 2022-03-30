@@ -1,22 +1,24 @@
 class SnapshotArray:
 
     def __init__(self, length: int):
-        self.cache = []
-        self.arr = {}
-        self.snap_count = 0
-
-    def set(self, index: int, val: int) -> None:
-        self.arr[index] = val
+        #use a hashmap {0:{snap_id:val}}
+        self.snapArray = defaultdict(defaultdict)
+        self.count = 0
         
+    def set(self, index: int, val: int) -> None:
+        self.snapArray[self.count][index] = val
+
     def snap(self) -> int:
-        self.cache.append(dict(self.arr))
-        self.snap_count += 1
-        return self.snap_count-1
+        cur = self.count
+        self.count += 1
+        # copy the previous snapshot to current snapshot
+        self.snapArray[self.count] = self.snapArray[cur].copy()
+        return cur
 
     def get(self, index: int, snap_id: int) -> int:
-        # print("get: ", self.snap_hist)
-        arr = self.cache[snap_id]
-        return arr[index] if index in arr else 0
+        if index not in self.snapArray[snap_id]:
+            return 0
+        return self.snapArray[snap_id][index]
 
 
 # Your SnapshotArray object will be instantiated and called as such:
