@@ -6,25 +6,21 @@
 #         self.right = right
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
-        ## add a level
+        
         nodeMap = defaultdict(list)
         
         def dfs(root):
-            # post-order traversal
             if not root:
-                return -1
-
+                return 0
+            
             left_h = dfs(root.left)
             right_h = dfs(root.right)
-
-            height = max(left_h, right_h) + 1
-            nodeMap[height].append(root.val)
-            return height
+            
+            cur_h = max(left_h, right_h) + 1
+            nodeMap[cur_h].append(root.val)
+            
+            return cur_h
         
         dfs(root)
         
-        return nodeMap.values()
-            
-            
-            
-            
+        return list(nodeMap.values())
