@@ -2,23 +2,20 @@ class Solution:
     def findReplaceString(self, s: str, indices: List[int], sources: List[str], targets: List[str]) -> str:
         ans = ""
         
-        #need to sort the indices
+        strMap = defaultdict(int)
         
-        prev_index = 0
-        for index, source, target in sorted(zip(indices, sources, targets)):
-            dist = index-prev_index
-            # add substrings that will not be replaced to the ans string
-            if dist>0:
-                ans += s[prev_index:index]
-            
+        # store the indices whose corresponding is found at s[index]. For example, index=0, source=a, s='abcd', then because source is found at s[0], we add index to the hashmap. The value of the hashmap is just the index of sources/targets, which is later used to replace the substring and retrieve substring length.
+        for i, (index, source) in enumerate(zip(indices, sources)):
             if s[index:].startswith(source):
-                ans += target
-                prev_index = index+len(source)
-            else:
-                # reset prev_index to index, so at the next iteration, s[prev_index:index] will be added to the ans string
-                prev_index = index
+                strMap[index] = i
         
-        #add final substring
-        ans += s[prev_index:]
+        start = 0
+        while start<len(s):
+            if start in strMap:
+                ans += targets[strMap[start]]
+                start += len(sources[strMap[start]])
+            else:
+                ans += s[start]
+                start += 1
         
         return ans
