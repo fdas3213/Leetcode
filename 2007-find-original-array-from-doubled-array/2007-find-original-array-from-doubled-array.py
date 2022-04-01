@@ -11,12 +11,12 @@ class Solution:
             if counts[n]==0:
                 continue
             doubled = n*2
-            if n==0:
-                if counts[n]%2 !=0:
-                    return []
-                counts[n]-=2
-                res.append(n)
-                continue
+            if n==0 and counts[n]%2 !=0:
+                return []
+                # #because 0 is a double of 0, we decrement 2
+                # counts[n]-=2
+                # res.append(n)
+                # continue
             
             if doubled not in counts or counts[doubled]==0:
                 return []
