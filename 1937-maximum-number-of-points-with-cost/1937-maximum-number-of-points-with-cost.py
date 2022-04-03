@@ -1,10 +1,13 @@
 class Solution:
     def maxPoints(self, points: List[List[int]]) -> int:
         m, n = len(points), len(points[0])
-        dp = [[0 for _ in range(n)] for _ in range(m)]
+#         dp = [[0 for _ in range(n)] for _ in range(m)]
         
-        dp[0] = points[0]
-        ans = max(dp[0])
+#         dp[0] = points[0]
+#         ans = max(dp[0])
+        #no need for 2-D dp array because we only need to retrieve result from the previous row
+        dp = [points[0][c] for c in range(n)]
+        ans = max(dp)
         
         for r in range(1, m):
             """
@@ -21,18 +24,23 @@ class Solution:
                                = max(maxRightGain[i][j+1], dp[i-1][j]-j))
             """
             # initialize the maxLeftGain to be dp[r-1][0]
-            leftGain = [dp[r-1][0]] + [0 for _ in range(n-1)]
+            #leftGain = [dp[r-1][0]] + [0 for _ in range(n-1)]
+            leftGain = [dp[0]] + [0 for _ in range(n-1)]
             for k in range(1, n):
-                leftGain[k] = max(leftGain[k-1], dp[r-1][k]+k)
+                leftGain[k] = max(leftGain[k-1], dp[k]+k) #dp[r-1][k]+k)
             
             # initialize the maxRightGain to be dp[r-1][-1]
-            rightGain = [0 for _ in range(n-1)] + [dp[r-1][-1]-n+1]
+            #rightGain = [0 for _ in range(n-1)] + [dp[r-1][-1]-n+1]
+            rightGain = [0 for _ in range(n-1)] + [dp[-1]-n+1]
             for k in range(n-2,-1,-1):
-                rightGain[k] = max(rightGain[k+1], dp[r-1][k]-k)
+                rightGain[k] = max(rightGain[k+1], dp[k]-k)
             
-            # update current value
+            # update current value and dp array
+            nxt = [0 for _ in range(n)]
             for c in range(n):
-                dp[r][c] = points[r][c] + max(leftGain[c]-c, rightGain[c]+c)
-                ans = max(ans, dp[r][c])
+                nxt[c] = points[r][c] + max(leftGain[c]-c, rightGain[c]+c)
+                ans = max(ans, nxt[c])
+            
+            dp = nxt
         
         return ans
