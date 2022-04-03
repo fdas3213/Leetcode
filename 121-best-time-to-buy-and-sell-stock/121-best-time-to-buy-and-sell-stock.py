@@ -3,10 +3,10 @@ class Solution:
         minPrice = prices[0]
         ans = 0
         n = len(prices)
-        dp = [0 for _ in range(n)]
+        # dp = [0 for _ in range(n)]
         for i in range(1, n):
-            dp[i] = max(0, prices[i]-minPrice)
-            ans = max(ans, dp[i])
+            #dp[i] = max(0, prices[i]-minPrice)
+            ans = max(ans, prices[i]-minPrice)
             minPrice = min(minPrice, prices[i])
         
         return ans
