@@ -38,8 +38,7 @@ class Solution:
             if curVal==destValue:
                 return curStr
             # bfs neighbors
-            for neighbor in nodeMap[curVal]:
-                nxt, relation = neighbor[0], neighbor[1]
+            for nxt, relation in nodeMap[curVal]:
                 if nxt in visited:
                     continue
                 visited.add(nxt)
