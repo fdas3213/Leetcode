@@ -7,22 +7,23 @@
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
         
-#         def get_height(root):
-#             if not root:
-#                 return 0 
-#             left_h = get_height(root.left)
-#             return 1+left_h
-            
-        self.ans = 0
-        def count(root):
+        def get_left_height(root):
             if not root:
-                return
-            self.ans += 1
-            count(root.left)
-            count(root.right)
+                return 0
+            return 1 + get_left_height(root.left)
         
-        count(root)
+        def get_right_height(root):
+            if not root:
+                return 0
+            return 1 + get_right_height(root.right)
         
-        return self.ans
+        left_h = get_left_height(root)
+        right_h = get_right_height(root)
+        
+        if left_h==right_h:
+            return 2**left_h - 1
+        else:
+            return self.countNodes(root.left)+self.countNodes(root.right)+1
+        
         
             
