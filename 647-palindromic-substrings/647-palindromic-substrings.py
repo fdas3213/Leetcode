@@ -1,22 +1,23 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        ans = 0
+        l = len(s)
         
-        def countPalindrome(s:str, left:int, right:int) -> int:
+        def isPalindrome(l:int, r:int, s:str):
             ans = 0
-            while left>=0 and right<len(s):
-                if s[left]!=s[right]:
+            #expand from the middle to count every possible palindrome substring
+            while l>=0 and r<len(s):
+                if s[l]!=s[r]:
                     return ans
-                left -= 1
-                right += 1
+                l -= 1
+                r += 1
                 ans += 1
-            
             return ans
         
-        for i in range(len(s)):
-            # center for odd-length palindrome
-            ans += countPalindrome(s, i, i)
-            # center for even-length palindrome
-            ans += countPalindrome(s, i, i+1)
+        cnt = 0
+        for i in range(l):
+            #middle is every single character
+            cnt += isPalindrome(i, i, s)
+            #middle is every pair of characters
+            cnt += isPalindrome(i, i+1, s)
         
-        return ans
+        return cnt
