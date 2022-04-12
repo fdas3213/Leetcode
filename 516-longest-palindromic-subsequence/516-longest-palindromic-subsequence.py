@@ -1,19 +1,21 @@
 class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
         l = len(s)
-        memo = [[0 for _ in range(l)] for _ in range(l)]
         
-        def cntSubseq(l, r, s):
-            if l==r:
-                return 1
-            if l>r:
-                return 0
-            if memo[l][r]:
-                return memo[l][r]
-            
-            memo[l][r] = 2+cntSubseq(l+1,r-1,s) if s[l]==s[r] else \
-                    max(cntSubseq(l+1, r, s), cntSubseq(l, r-1, s))
-            
-            return memo[l][r]
+        dp = [[0 for _ in range(l)] for _ in range(l)]
         
-        return cntSubseq(0, l-1, s)
+        # i is the left pointer
+        for i in range(l-1,-1,-1):
+            #a single character itself is a palindrome
+            dp[i][i] = 1
+            # j is the right pointer
+            for j in range(i+1, l, 1):
+                if s[i]==s[j]:
+                    dp[i][j] = dp[i+1][j-1]+2
+                else:
+                    #current index is the max of left and bottom
+                    dp[i][j] = max(dp[i][j-1], dp[i+1][j])
+        
+        #dp[0][l-1] stores the longest subsequence of the entire string
+        return dp[0][l-1]
+        
