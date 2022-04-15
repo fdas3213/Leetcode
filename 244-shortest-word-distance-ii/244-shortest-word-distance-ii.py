@@ -13,25 +13,21 @@ class WordDistance:
         p1, p2 = 0, 0
         l1, l2 = len(w1_list), len(w2_list)
         ans = float('inf')
-        while p1<l1 or p2<l2:
-            idx1 = w1_list[p1] if p1<l1 else w1_list[-1]
-            idx2 = w2_list[p2] if p2<l2 else w2_list[-1]
+        while p1<l1 and p2<l2:
+            idx1 = w1_list[p1]
+            idx2 = w2_list[p2] 
 
             ans = min(ans, abs(idx1-idx2))
-            # there cannot be distance less than 1
             if ans==1:
                 return ans
-            if p1<l1 and p2<l2:
-                if idx1<idx2:
-                    p1 += 1
-                else:
-                    p2 += 1
-            elif p1<l1:
+            
+            if idx1<idx2:
                 p1 += 1
             else:
                 p2 += 1
-        
+                
         return ans
+           
 
 # Your WordDistance object will be instantiated and called as such:
 # obj = WordDistance(wordsDict)
