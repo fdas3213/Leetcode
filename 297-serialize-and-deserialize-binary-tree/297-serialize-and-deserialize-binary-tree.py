@@ -13,11 +13,10 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        # post-order traversal
         if not root:
             return "#"
-        serialTree = str(root.val)+','+self.serialize(root.left)+','+self.serialize(root.right)
-        return serialTree
+        
+        return str(root.val)+","+self.serialize(root.left)+","+self.serialize(root.right)
         
 
     def deserialize(self, data):
@@ -26,21 +25,22 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        def dfs(l):
-            if l[0]=='#':
-                l.pop(0)
+        dlist = data.split(",")
+        
+        def dfs(dlist):
+            if dlist[0]=='#':
+                dlist.pop(0)
                 return None
-            root = TreeNode(int(l[0]))
-            # pop the first element
-            l.pop(0)
-            root.left = dfs(l)
-            root.right = dfs(l)
             
+            root = TreeNode(dlist[0])
+            # remove the current element
+            dlist.pop(0)
+            root.left = dfs(dlist)
+            root.right = dfs(dlist)
             return root
         
-        data_list = data.split(",")
-        return dfs(data_list)
-
+        return dfs(dlist)
+        
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
