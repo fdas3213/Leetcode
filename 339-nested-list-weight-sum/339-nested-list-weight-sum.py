@@ -49,13 +49,11 @@ class Solution:
             if not nestedList:
                 return
             
-            for elem in nestedList:
-                if elem.isInteger():
-                    self.ans += (elem.getInteger()*depth)
+            for nList in nestedList:
+                if nList.isInteger():
+                    self.ans += nList.getInteger()*depth
                 else:
-                    dfs(elem.getList(), depth+1)
+                    dfs(nList.getList(), depth+1)
         
         dfs(nestedList, 1)
-        
         return self.ans
-        
