@@ -2,33 +2,57 @@ class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
         """
         A tree is valid if
-        1. fully connected: there's a path between every pair of nodes
-        2. does not have a cycle: there's exactly one path between each pair of nodes
+        1. every node is connected: for every pair of nodes in graph, there is a path between them
+        2. there's not a cycle: number of edges==n-1
         """
-        if len(edges)!=n-1:
+        # check condition 2
+        if len(edges) != n-1:
             return False
-        #build graph
+        
         graph = defaultdict(list)
-        for n1, n2 in edges:
-            graph[n1].append(n2)
-            graph[n2].append(n1)
+        for e1, e2 in edges:
+            graph[e1].append(e2)
+            graph[e2].append(e1)
+
+        visited = set()
+        #bfs
+        visited.add(0)
+        queue = deque([(0, -1)])
         
-        # used set to track fully connect, and parent set to track cycle
-        used = set()
-        used.add(0)
-        
-        def dfs(node, parent):
-            for neighbor in graph[node]:
+        while queue:
+            cur, parent = queue.popleft()
+            for neighbor in graph[cur]:
                 if neighbor == parent:
                     continue
-                if neighbor in used:
+                
+                if neighbor in visited:
                     return False
-                if neighbor not in used:
-                    used.add(neighbor)
-                    if not dfs(neighbor, node):
-                        return False
-            return True
-
-        return dfs(0, -1) and len(used)==n
+                
+                visited.add(neighbor)
+                queue.append((neighbor, cur))
+        
+        return len(visited)==n
         
         
+            #dfs      
+#         def dfs(cur, parent):
+#             if cur in visited:
+#                 return
+            
+#             visited.add(cur)
+            
+#             for neighbor in graph[cur]:
+#                 if neighbor==parent:
+#                     continue
+                
+#                 if neighbor in visited:
+#                     return False
+                
+#                 res = dfs(neighbor, cur)
+#                 if not res:
+#                     return False
+            
+#             return True
+        
+#         return dfs(0, -1) and len(visited)==n
+     
