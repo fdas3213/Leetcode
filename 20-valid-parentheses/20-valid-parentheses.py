@@ -1,16 +1,22 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        for ch in s:
-            if ch=='(' or ch=='[' or ch=='{':
-                stack.append(ch)
+        
+        for c in s:
+            if c == '(' or c=='[' or c=='{':
+                stack.append(c)
             elif not stack:
+                # no matching open parenthesis
                 return False
-            elif ch==')' and stack.pop()!='(':
-                return False
-            elif ch==']' and stack.pop()!='[':
-                return False
-            elif ch=='}' and stack.pop()!='{':
-                return False
-            
+            else:
+                pre = stack.pop()
+                if c==')' and pre!='(':
+                    return False
+                elif c==']' and pre!='[':
+                    return False
+                elif c=='}' and pre!='{':
+                    return False
+        
         return len(stack)==0
+                
+                
