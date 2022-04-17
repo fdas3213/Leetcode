@@ -1,22 +1,23 @@
 class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
         
-        def get_job_detail(log):
-            details = log.split(":")
-            return int(details[0]), details[1], int(details[2])
+        def getLog(log):
+            split = log.split(":")
+            return int(split[0]), split[1], int(split[2])
         
         res = [0 for _ in range(n)]
         stack = []
+        
         for log in logs:
-            if "start" in log:
-                stack.append(log)
+            idx, status, time = getLog(log)
+            if status=='start':
+                stack.append([idx, status, time])
             else:
-                job, status, time = get_job_detail(stack.pop())
-                endjob, endStatus, endTime = get_job_detail(log)
-                res[job] += (endTime-time+1)
+                start_idx, start, start_time = stack.pop()
+                res[idx] += (time-start_time+1)
                 if stack:
-                    prev_job, prevStatus, prevTime = get_job_detail(stack[-1])
-                    res[prev_job] -= (endTime-time+1)
+                    # if there still exists a running program, then need to subtract the running time by previous 
+                    # running program
+                    res[stack[-1][0]] -= (time-start_time+1)
         
         return res
-                
