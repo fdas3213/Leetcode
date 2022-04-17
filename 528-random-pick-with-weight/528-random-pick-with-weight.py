@@ -1,18 +1,18 @@
 class Solution:
 
     def __init__(self, w: List[int]):
+        self.cumSum = 0
         self.weights = []
-        cursum = 0
-        for weight in w:
-            cursum += weight
-            self.weights.append(cursum)
-        self.cumsum = cursum
-        
+        for n in w:
+            self.cumSum += n
+            self.weights.append(self.cumSum)
+
     def pickIndex(self) -> int:
-        r = random.randint(1, self.cumsum)
+        r = random.randint(1, self.cumSum)
         left, right = 0, len(self.weights)-1
+        
         while left<=right:
-            mid = left + (right-left)//2
+            mid = left+(right-left)//2
             if self.weights[mid]==r:
                 return mid
             elif self.weights[mid]>r:
@@ -22,6 +22,8 @@ class Solution:
         
         return left
         
+        
+
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(w)
