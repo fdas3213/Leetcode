@@ -10,15 +10,23 @@ class Solution:
         if not root:
             return root
         
-        if root==p or root==q:
-            return root
+        def LCA(root, p, q):
+            if not root:
+                return
+            
+            if root==p or root==q:
+                return root
+            
+            left = LCA(root.left, p, q)
+            right = LCA(root.right, p, q)
+            
+            if left and right:
+                return root
+            elif left:
+                # if just returns one value, that means the other node is nested under the returned node
+                return left
+            elif right:
+                return right
         
-        left = self.lowestCommonAncestor(root.left, p, q)
-        right = self.lowestCommonAncestor(root.right, p, q)
+        return LCA(root, p, q)
         
-        if left and right:
-            return root
-        elif left:
-            return left
-        elif right:
-            return right
