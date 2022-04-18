@@ -1,35 +1,25 @@
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        # edge case
-        if beginWord==endWord or endWord not in wordList:
+        #edge case
+        if endWord not in wordList:
             return 0
         
-        # bfs
-        queue = deque([beginWord])
-        letters = list(string.ascii_lowercase)
-        wordList = set(wordList)
-        count = 1
+        #(word, distance)
+        queue = deque([(beginWord, 1)])
+        remaining = set(wordList)
         
         while queue:
-            size = len(queue)
-            # for elements in queue that already have "count" number of transformations
-            for i in range(size):
-                # for each word in the queue
-                cur = queue.popleft()
-                if cur == endWord:
-                    return count
-                # for each position of the current word
-                for pos, char in enumerate(cur):
-                    # for each alphabetic letter
-                    for letter in letters:
-                        if letter == char:
-                            continue
-                        newWord = cur[:pos] + letter + cur[pos+1:]
-                        if newWord in wordList:
-                            wordList.remove(newWord)
-                            queue.append(newWord)
-            count += 1
+            # print(queue, remaining)
+            cur, dist = queue.popleft()
+            if cur==endWord:
+                return dist
+            
+            #iterate over every character of the current word
+            for i, ch in enumerate(cur):
+                for letter in string.ascii_lowercase:
+                    nxt = cur[:i]+letter+cur[i+1:]
+                    if nxt in remaining:
+                        queue.append((nxt, dist+1))
+                        remaining.remove(nxt)
         
         return 0
-                        
-            
