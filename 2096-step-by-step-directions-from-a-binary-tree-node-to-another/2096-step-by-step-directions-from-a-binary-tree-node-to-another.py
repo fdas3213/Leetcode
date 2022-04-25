@@ -6,43 +6,37 @@
 #         self.right = right
 class Solution:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
-        # first use dfs to create a hashmap {node:parent_node}, then build a graph?
-        # convert tree to a graph, and then bfs to find shortest path?
+        #build a graph
+        graph = defaultdict(list)
         
-        nodeMap = defaultdict(list)
-        # {node: (parent_node, parent), node: (child_node, left)}
-        
-        def dfs(root, parent, direction):
+        def dfs(parent, root, direction):
             if not root:
                 return
             
-            # need to use these if statements to determine whether it's a left or right child
             if parent:
-                nodeMap[root.val].append((parent.val, 'U'))
-                nodeMap[parent.val].append((root.val, direction))
+                graph[root.val].append((parent.val, 'U'))
+                graph[parent.val].append((root.val, direction))
                 
-            dfs(root.left, root, 'L')
-            dfs(root.right, root, 'R')
+            dfs(root, root.left, 'L')
+            dfs(root, root.right, 'R')
         
-        dfs(root, None, None)
+        dfs(None, root, 'None')
         
-#         print(nodeMap)
-        
-        #bfs to find shortest path. use a tuple (current value, current answer) to track the path
+        #bfs to find shortest path
         queue = deque([(startValue, "")])
         visited = set()
-        visited.add(startValue)
         
         while queue:
-            curVal, curStr = queue.popleft()
-            if curVal==destValue:
-                return curStr
-            # bfs neighbors
-            for nxt, relation in nodeMap[curVal]:
-                if nxt in visited:
+            cur, curPath = queue.popleft()
+            if cur==destValue:
+                return curPath
+            for neighbor, direction in graph[cur]:
+                if neighbor in visited:
                     continue
-                visited.add(nxt)
-                queue.append((nxt, curStr+relation))
+                
+                queue.append((neighbor, curPath+direction))
+                visited.add(neighbor)
         
         return ""
                 
+            
