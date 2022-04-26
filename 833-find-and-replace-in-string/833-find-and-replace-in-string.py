@@ -1,23 +1,22 @@
 class Solution:
     def findReplaceString(self, s: str, indices: List[int], sources: List[str], targets: List[str]) -> str:
-        srcTgtMap = {}
-        indexSrcMap = {}
-        
-        for i, (index, source, target) in enumerate(zip(indices, sources, targets)):
+        #a dictionary which has {index: target} structure
+        indexTargetMap = defaultdict(str)
+        #a dictionary which has {index: len(source)} structure
+        indexSourceMap = defaultdict(int)
+        for index, source, target in zip(indices, sources, targets):
             if s[index:].startswith(source):
-                srcTgtMap[index] = target
-                indexSrcMap[index] = i
+                indexTargetMap[index] = target
+                indexSourceMap[index] = len(source)
         
-        ans = ""
         start = 0
-        print(srcTgtMap)
-        while start < len(s):
-            if start not in srcTgtMap:
+        ans = ""
+        while start<len(s):
+            if start not in indexTargetMap:
                 ans += s[start]
                 start += 1
             else:
-                ans += srcTgtMap[start]
-                prevLen = len(sources[indexSrcMap[start]])
-                start += prevLen
-        
+                ans += indexTargetMap[start]
+                start += indexSourceMap[start]
+                
         return ans
