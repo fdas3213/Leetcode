@@ -1,30 +1,27 @@
 class Solution:
     def shortestPath(self, grid: List[List[int]], k: int) -> int:
-        #shortest path bfs.
+        #bfs for shortest path
+        queue = deque([(0,0,0,k)])
+        #(x, y, n_steps, k_left)
+        m, n = len(grid), len(grid[0])
         
-        m, n =len(grid), len(grid[0])
-        # (x, y, step, number of available eliminations)
-        queue = deque([(0, 0, 0, k)])
         dirs = [[0,1],[0,-1],[1,0],[-1,0]]
-        # use visited
         visited = set()
-        #need to add k together with coordinate to the visited set because there might exist multiple path from (0,0) to p, and the number of obstacles on the path is different, so we need to add k as well
-        visited.add((0,0,k))
-        ans = m*n
+        visited.add((0, 0, k))
         while queue:
-            x, y, step, cnt = queue.popleft()
+            x, y, n_steps, k_left = queue.popleft()
             if x==m-1 and y==n-1:
-                return step
-            
+                return n_steps
             for d in dirs:
-                new_x, new_y = x+d[0],y+d[1]
+                new_x, new_y = x+d[0], y+d[1]
+                #out of bound
                 if new_x<0 or new_y<0 or new_x>=m or new_y>=n:
                     continue
                 
-                new_cnt = cnt-grid[new_x][new_y]
-                if new_cnt>=0 and (new_x, new_y, new_cnt) not in visited:
-                    queue.append((new_x,new_y,step+1,new_cnt))
-                    visited.add((new_x,new_y, new_cnt))
+                new_k = k_left-1 if grid[new_x][new_y]==1 else k_left
+                #move on only if new_k>=0 and current (x,y,k) not visited 
+                if new_k>=0 and (new_x,new_y,new_k) not in visited:
+                    queue.append((new_x, new_y, n_steps+1, new_k))
+                    visited.add((new_x, new_y, new_k))
         
         return -1
-            
