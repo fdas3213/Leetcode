@@ -1,20 +1,23 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        # add element to the stack if it is a digit, otherwise pop
+        #stack
+        
         stack = []
-        for ch in tokens:
-            if ch.isdigit() or ch[1:].isdigit():
-                stack.append(int(ch))
+        
+        for token in tokens:
+            if token.isdigit() or token[1:].isdigit():
+                stack.append(int(token))
             else:
-                d1, d2 = stack.pop(), stack.pop()
-                if ch=='+':
-                    stack.append(d1+d2)
-                elif ch=='*':
-                    stack.append(d1*d2)
-                elif ch=='/':
-                    stack.append(int(d2/d1))
-                else:
-                    stack.append(d2-d1)
+                n1 = stack.pop()
+                n2 = stack.pop()
+                if token=='+':
+                    stack.append(n1+n2)
+                elif token=='*':
+                    stack.append(n1*n2)
+                elif token=='-':
+                    stack.append(n2-n1)
+                elif token=='/':
+                    stack.append(int(n2/n1))
         
         ans = 0
         while stack:
