@@ -4,18 +4,25 @@ class Solution:
         if finalSum%2!=0:
             return []
         
-        ans = []
-        even = 2
-        cur = 0
-        #iteratively add even integers
-        while cur+even <= finalSum:
-            ans.append(even)
-            cur += even
-            
-            even += 2
+        res = []
         
-        difference = finalSum-cur
-        ans[-1] += difference
-        
-        return ans
+        def backtrack(curSum:int, finalSum:int, n:int, res:List[int]):
+            # terminal condition
+            if curSum==finalSum:
+                return True
+            if curSum+n>finalSum:
+                return False
             
+            for i in range(n, finalSum+1, 2):
+                res.append(i)
+                if backtrack(curSum+i, finalSum, i+2, res):
+                    return True
+                res.pop()
+            
+            return False
+        
+        if backtrack(0, finalSum, 2, res):
+            return res
+        
+        return []
+        
