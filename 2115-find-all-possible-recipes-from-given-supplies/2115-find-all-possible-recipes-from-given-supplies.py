@@ -1,28 +1,29 @@
 class Solution:
     def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
-        # set indegree of a recipe to be number of required ingredients
+        #topological sort
+        #indegree = {recipe: number of ingredients needed}
         indegree = defaultdict(int)
-        # use a graph to connect ingredient and recipe
+        for i, recipe in enumerate(recipes):
+            indegree[recipe] = len(ingredients[i])
+        #build a graph where key in the indegredient, and neighbors is a list of recipes that consume the ingredient
         graph = defaultdict(list)
         
-        for recipe, ingre in zip(recipes, ingredients):
-            indegree[recipe] = len(ingre)
-            for ing in ingre:
-                graph[ing].append(recipe)
+        for i, ingredient in enumerate(ingredients):
+            recipe = recipes[i]
+            for ingre in ingredient:
+                graph[ingre].append(recipe)
         
-        # iterate over the supply to decrement the indegree of recipe
+        #use a queue, where elements are supplies, so we bfs over supplies, and
+        #when indegree of a recipe becomes 0, we add it to the queue and the result list
         queue = deque(supplies)
-        ans = []
+        res = []
         
         while queue:
             supply = queue.popleft()
-            # a recipe is added to the queue only when it has indegree of 0
-            if supply in recipes:
-                ans.append(supply)
-                
-            for reci in graph[supply]:
-                indegree[reci] -= 1
-                if indegree[reci]==0:
-                    queue.append(reci)
+            for recipe in graph[supply]:
+                indegree[recipe] -= 1
+                if indegree[recipe]==0:
+                    queue.append(recipe)
+                    res.append(recipe)
         
-        return ans
+        return res
