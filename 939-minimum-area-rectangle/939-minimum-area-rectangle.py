@@ -16,8 +16,10 @@ class Solution:
                 # if two points share the same x/y coordinates, they cannot be diagonal
                 if p1[0]==p3[0] or p1[1]==p3[1]:
                     continue
+                    
+                curArea = abs(p3[1]-p1[1])*abs(p3[0]-p1[0])
                 
-                if p3[1] in pointsMap[p1[0]] and p1[1] in pointsMap[p3[0]]:
-                    area = min(area, abs(p3[1]-p1[1])*abs(p3[0]-p1[0]))
+                if curArea<area and p3[1] in pointsMap[p1[0]] and p1[1] in pointsMap[p3[0]]:
+                    area = curArea
         
         return area if area!=float("inf") else 0
