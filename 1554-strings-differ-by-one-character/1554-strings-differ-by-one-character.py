@@ -9,7 +9,7 @@ class Solution:
         for i in range(l):
             wordSet = set()
             for word in dict:
-                newWord = word[:i]+'*'+word[i+1:]
+                newWord = word[:i]+word[i+1:]
                 if newWord in wordSet:
                     return True
                 wordSet.add(newWord)
