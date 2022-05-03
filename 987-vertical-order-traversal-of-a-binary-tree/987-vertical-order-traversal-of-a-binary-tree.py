@@ -6,29 +6,31 @@
 #         self.right = right
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
-        ans = []
-        nodeMap = defaultdict(list)
-        self.curMin, self.curMax = 0,0
-        if not root:
-            return ans
         
-        def dfs(root, row, level):
+        #use a hashmap to track row & column information
+        #{col: [(row, value)]}
+        nodeMap = defaultdict(list)
+        self.minLevel = float("inf")
+        self.maxLevel = float("-inf")
+        
+        def dfs(root, col, row):
             if not root:
                 return
-            
-            nodeMap[level].append((row, root.val))
-            self.curMin = min(self.curMin, level)
-            self.curMax = max(self.curMax, level)
-                        
-            dfs(root.left, row+1, level-1)
-            dfs(root.right, row+1, level+1)
+
+            self.minLevel = min(col, self.minLevel)
+            self.maxLevel = max(col, self.maxLevel)
+            nodeMap[col].append((row, root.val))
+            dfs(root.left, col-1, row+1)
+            dfs(root.right, col+1, row+1)
         
         dfs(root, 0, 0)
         
-        for i in range(self.curMin, self.curMax+1):
-            # sort based on row number
-            cur = sorted(nodeMap[i], key=lambda x: (x[0], x[1]))
-            ans.append([tup[1] for tup in cur])
+        ans = []
+        
+        for level in range(self.minLevel, self.maxLevel+1):
+            ans.append([tup[1] for tup in sorted(nodeMap[level], key=lambda x: (x[0], x[1]))])
         
         return ans
-            
+        
+        
+        
